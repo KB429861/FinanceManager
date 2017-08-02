@@ -1,13 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.LendingFragment">
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".LendingFragment">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/btn_create"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Debts info" />
+        android:layout_height="wrap_content"
+        android:text="Create" />
 
-</FrameLayout>
+</LinearLayout>
