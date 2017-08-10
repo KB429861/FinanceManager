@@ -22,7 +22,12 @@
         <activity
             android:name=".LendingActivity"
             android:label="@string/title_activity_lending"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PersonActivity"
+            android:label="@string/title_activity_person"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

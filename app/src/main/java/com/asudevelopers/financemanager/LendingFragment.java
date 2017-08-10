@@ -22,7 +22,7 @@ public class LendingFragment extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), LendingActivity.class);
+                Intent intent = new Intent(getActivity(), PersonActivity.class);
                 startActivity(intent);
             }
         });
