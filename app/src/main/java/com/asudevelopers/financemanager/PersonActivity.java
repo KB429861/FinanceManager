@@ -1,39 +1,36 @@
 package com.asudevelopers.financemanager;
 
+import android.arch.lifecycle.LifecycleActivity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.asudevelopers.financemanager.database.model.Person;
 import com.asudevelopers.financemanager.databinding.ContentPersonBinding;
+import com.asudevelopers.financemanager.viewmodel.PersonViewModel;
 
-public class PersonActivity extends AppCompatActivity {
+public class PersonActivity extends LifecycleActivity {
+
+    private PersonViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                savePerson();
+
             }
         });
 
+        viewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
         ContentPersonBinding binding = DataBindingUtil.setContentView(this, R.layout.content_person);
-        Person person = new Person("John", "555");
-        binding.setPerson(person);
-    }
-
-    private void savePerson() {
-
-
+        binding.setViewModel(viewModel);
     }
 }
