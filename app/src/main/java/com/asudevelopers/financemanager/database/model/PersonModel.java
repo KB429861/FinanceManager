@@ -1,22 +1,16 @@
 package com.asudevelopers.financemanager.database.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+public class PersonModel {
 
-@Entity(tableName = "people")
-public class Person {
-
-    @PrimaryKey(autoGenerate = true)
     private int id;
-
-    @ColumnInfo(name = "name")
     private String name;
-
-    @ColumnInfo(name = "phone")
     private String phone;
 
-    public Person(String name, String phone) {
+    public PersonModel() {
+    }
+
+    public PersonModel(int id, String name, String phone) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
     }

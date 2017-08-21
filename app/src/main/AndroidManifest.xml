@@ -4,7 +4,7 @@
     package="com.asudevelopers.financemanager">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,24 +15,21 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="java-lang-programming"
+                    android:scheme="android-app-google-plus-demo"/>
+
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LendingActivity"
-            android:label="@string/title_activity_lending"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".PersonActivity"
-            android:label="@string/title_activity_person"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name=".PeopleActivity"
-            android:label="@string/title_activity_people"
-            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
