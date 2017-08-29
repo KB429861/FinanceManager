@@ -106,4 +106,6 @@
     <string name="create">Create</string>
     <string name="logo">Logo</string>
     <string name="app_email">asudevelopers@outlook.com</string>
+    <string name="people">People</string>
+    <string name="title_activity_scrolling_people">ScrollingPeople</string>
 </resources>

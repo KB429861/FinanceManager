@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         switch (itemId) {
             case R.id.nav_overview:
-                fragment = new PersonFragment();
+                fragment = new OverviewFragment();
                 break;
             case R.id.nav_lending:
                 fragment = new LendingFragment();

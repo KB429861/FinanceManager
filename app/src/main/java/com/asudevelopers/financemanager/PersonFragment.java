@@ -66,9 +66,11 @@ public class PersonFragment extends Fragment {
 
     private void loadPeople() {
         List<PersonModel> people = PersonContract.selectPeople(databaseHelper.getReadableDatabase());
-        PersonModel person = people.get(0);
-        idTextView.setText(String.valueOf(person.getId()));
-        nameTextView.setText(person.getName());
-        phoneTextView.setText(person.getPhone());
+        if (!people.isEmpty()) {
+            PersonModel person = people.get(0);
+            idTextView.setText(String.valueOf(person.getId()));
+            nameTextView.setText(person.getName());
+            phoneTextView.setText(person.getPhone());
+        }
     }
 }
