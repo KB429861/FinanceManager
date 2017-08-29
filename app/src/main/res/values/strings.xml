@@ -108,4 +108,7 @@
     <string name="app_email">asudevelopers@outlook.com</string>
     <string name="people">People</string>
     <string name="title_activity_scrolling_people">ScrollingPeople</string>
+    <string name="empty">Nothing…</string>
+    <string name="test_name">John Doe</string>
+    <string name="test_phone">666</string>
 </resources>
