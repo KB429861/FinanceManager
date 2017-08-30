@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,8 +12,8 @@
     <fragment
         android:id="@+id/fr_person_list"
         android:name="com.asudevelopers.financemanager.PersonListFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_person_item"/>
 
-</RelativeLayout>
+</LinearLayout>

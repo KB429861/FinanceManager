@@ -29,7 +29,15 @@
                     android:scheme="android-app-google-plus-demo"/>
             </intent-filter>
         </activity>
-        <activity android:name=".PeopleActivity">
+        <activity
+            android:name=".PeopleActivity"
+            android:label="@string/title_activity_people"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
+            android:name=".PersonActivity"
+            android:label="@string/title_activity_person"
+            android:windowSoftInputMode="adjustResize">
         </activity>
     </application>
 

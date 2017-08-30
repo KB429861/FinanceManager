@@ -1,9 +1,12 @@
 package com.asudevelopers.financemanager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class PeopleActivity extends AppCompatActivity {
 
@@ -13,7 +16,7 @@ public class PeopleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_people);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("tet");
+        toolbar.setTitle(R.string.people);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -21,6 +24,19 @@ public class PeopleActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
+
+        FloatingActionButton actionButton = findViewById(R.id.fab);
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addPerson();
+            }
+        });
+    }
+
+    private void addPerson() {
+        Intent intent = new Intent(getApplication(), PersonActivity.class);
+        startActivity(intent);
     }
 
     @Override
