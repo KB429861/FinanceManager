@@ -5,23 +5,23 @@
         <item
             android:id="@+id/nav_overview"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Overview" />
+            android:title="@string/overview" />
         <item
             android:id="@+id/nav_lending"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Lending" />
+            android:title="@string/lending" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/send" />
         </menu>
     </item>
 

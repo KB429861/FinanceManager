@@ -35,7 +35,7 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
-            android:name=".PersonActivity"
+            android:name=".ui.activity.PersonActivity"
             android:label="@string/title_activity_person"
             android:windowSoftInputMode="adjustResize">
         </activity>

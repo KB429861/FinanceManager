@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager;
+package com.asudevelopers.financemanager.ui.fragment;
 
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -10,28 +10,25 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.asudevelopers.financemanager.database.DatabaseHelper;
-import com.asudevelopers.financemanager.database.contract.PersonContract;
-import com.asudevelopers.financemanager.database.model.PersonModel;
+import com.asudevelopers.financemanager.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class PersonListFragment extends ListFragment {
 
-    private DatabaseHelper databaseHelper;
+//    private DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseHelper = DatabaseHelper.getInstance(getActivity());
+//        databaseHelper = DatabaseHelper.getInstance(getActivity());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        loadPeople();
+//        loadPeople();
     }
 
     @Override
@@ -42,15 +39,15 @@ public class PersonListFragment extends ListFragment {
 
     private void loadPeople() {
         ArrayList<HashMap<String, String>> data = new ArrayList<>();
-        List<PersonModel> people = PersonContract.selectPeople(databaseHelper.getReadableDatabase());
+//        List<Person> people = PersonContract.selectPeople(databaseHelper.getReadableDatabase());
 
-        HashMap<String, String> map;
-        for (PersonModel person : people) {
-            map = new HashMap<>();
-            map.put("Name", person.getName());
-            map.put("Phone", person.getPhone());
-            data.add(map);
-        }
+//        HashMap<String, String> map;
+//        for (Person person : people) {
+//            map = new HashMap<>();
+//            map.put("Name", person.getName());
+//            map.put("Phone", person.getPhone());
+//            data.add(map);
+//        }
 
         String[] from = {"Name", "Phone"};
         int[] to = {R.id.tv_name, R.id.tv_phone};

@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.asudevelopers.financemanager.ui.activity.PersonActivity;
+
 public class PeopleActivity extends AppCompatActivity {
 
     @Override

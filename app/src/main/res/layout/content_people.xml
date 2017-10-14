@@ -11,9 +11,9 @@
 
     <fragment
         android:id="@+id/fr_person_list"
-        android:name="com.asudevelopers.financemanager.PersonListFragment"
+        android:name="com.asudevelopers.financemanager.ui.fragment.PersonListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_person_item"/>
+        tools:layout="@layout/fragment_person_item" />
 
 </LinearLayout>

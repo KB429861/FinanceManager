@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.asudevelopers.financemanager.ui.activity.PersonActivity;
+
 public class OverviewFragment extends Fragment {
 
     @Nullable
@@ -21,7 +23,7 @@ public class OverviewFragment extends Fragment {
         peopleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PeopleActivity.class);
+                Intent intent = new Intent(getActivity(), PersonActivity.class);
                 startActivity(intent);
             }
         });

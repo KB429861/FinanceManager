@@ -1,16 +1,22 @@
-package com.asudevelopers.financemanager.database.model;
+package com.asudevelopers.financemanager.mvp.model.entity;
 
-public class PersonModel {
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity(tableName = "people")
+public class Person {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String phone;
 
-    public PersonModel() {
+    public Person() {
     }
 
-    public PersonModel(int id, String name, String phone) {
-        this.id = id;
+    @Ignore
+    public Person(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
