@@ -25,6 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 
 public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
 
@@ -64,6 +65,11 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
     public void onCreateClick(View view) {
         Intent intent = new Intent(this, PersonActivity.class);
         startActivity(intent);
+    }
+
+    @OnItemClick(R.id.lv_people)
+    public void onPersonClick(int position) {
+        Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
     }
 
     @Override
