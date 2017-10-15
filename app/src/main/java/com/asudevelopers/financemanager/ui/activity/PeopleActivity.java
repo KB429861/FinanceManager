@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -17,6 +18,8 @@ import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.presenter.PeoplePresenter;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -25,14 +28,11 @@ import butterknife.OnClick;
 
 public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
 
-    @BindView(R.id.et_name)
-    EditText nameEditText;
-
-    @BindView(R.id.et_phone)
-    EditText phoneEditText;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.lv_people)
+    ListView listView;
 
     @InjectPresenter
     PeoplePresenter peoplePresenter;
@@ -62,7 +62,7 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
 
     @OnClick(R.id.fab)
     public void onCreateClick(View view) {
-        Intent intent = new Intent(getApplication(), PersonActivity.class);
+        Intent intent = new Intent(this, PersonActivity.class);
         startActivity(intent);
     }
 
@@ -74,14 +74,18 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
 
     @Override
     public void showPeople(List<Person> people) {
-        Person person;
-        if (people.size() > 0) {
-            person = people.get(people.size() - 1);
-        } else {
-            person = new Person("Empty", "List");
+        ArrayList<HashMap<String, String>> data = new ArrayList<>();
+        HashMap<String, String> map;
+        for (Person person : people) {
+            map = new HashMap<>();
+            map.put("Name", person.getName());
+            map.put("Phone", person.getPhone());
+            data.add(map);
         }
-        nameEditText.setText(person.getName());
-        phoneEditText.setText(person.getPhone());
+        String[] from = {"Name", "Phone"};
+        int[] to = {R.id.tv_name, R.id.tv_phone};
+        SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.fragment_person_item, from, to);
+        listView.setAdapter(adapter);
     }
 
     @Override
