@@ -3,9 +3,11 @@ package com.asudevelopers.financemanager.mvp.view;
 import com.arellomobile.mvp.MvpView;
 import com.asudevelopers.financemanager.mvp.model.entity.Person;
 
-public interface PersonView extends MvpView {
+import java.util.List;
 
-    void showPerson(Person person);
+public interface PeopleView extends MvpView {
+
+    void showPeople(List<Person> people);
 
     void showError(Throwable throwable);
 

@@ -6,11 +6,9 @@ import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.view.PersonView;
 
-import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DefaultSubscriber;
 
 @InjectViewState
 public class PersonPresenter extends MvpPresenter<PersonView> {
@@ -21,31 +19,16 @@ public class PersonPresenter extends MvpPresenter<PersonView> {
         this.database = database;
     }
 
-    public void onClickTest() {
-        database.personDao().selectPeople()
-                .observeOn(AndroidSchedulers.mainThread())
+    public void savePerson(Person person) {
+        Single.just(person)
+                .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe(new DefaultSubscriber<List<Person>>() {
+                .subscribe(new Consumer<Person>() {
                     @Override
-                    public void onNext(List<Person> people) {
-                        Person person;
-                        if (people.size() > 0) {
-                            person = people.get(0);
-                        } else {
-                            person = new Person("Empty", "Person");
-                        }
-                        getViewState().showPerson(person);
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        getViewState().showError(throwable);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        getViewState().showComplete();
+                    public void accept(Person person) throws Exception {
+                        database.personDao().insertPeople(person);
                     }
                 });
+
     }
 }

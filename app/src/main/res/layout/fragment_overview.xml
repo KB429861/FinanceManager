@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/default_margin"
-    tools:context=".OverviewFragment">
+    tools:context=".ui.fragment.OverviewFragment">
 
     <Button
         android:id="@+id/btn_people"

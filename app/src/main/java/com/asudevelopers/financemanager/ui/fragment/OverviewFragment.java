@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager;
+package com.asudevelopers.financemanager.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,27 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.asudevelopers.financemanager.ui.activity.PersonActivity;
+import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.ui.activity.PeopleActivity;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class OverviewFragment extends Fragment {
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
-
-        Button peopleButton = view.findViewById(R.id.btn_people);
-        peopleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PersonActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -35,5 +30,11 @@ public class OverviewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Overview");
+    }
+
+    @OnClick(R.id.btn_people)
+    public void onPeopleClick(View view) {
+        Intent intent = new Intent(getActivity(), PeopleActivity.class);
+        startActivity(intent);
     }
 }

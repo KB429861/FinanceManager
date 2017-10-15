@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PeopleActivity"
+            android:name=".ui.activity.PeopleActivity"
             android:label="@string/title_activity_people"
             android:windowSoftInputMode="adjustResize">
         </activity>
