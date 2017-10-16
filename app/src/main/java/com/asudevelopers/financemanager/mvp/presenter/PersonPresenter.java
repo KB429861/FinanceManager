@@ -29,6 +29,5 @@ public class PersonPresenter extends MvpPresenter<PersonView> {
                         database.personDao().insertPeople(person);
                     }
                 });
-
     }
 }

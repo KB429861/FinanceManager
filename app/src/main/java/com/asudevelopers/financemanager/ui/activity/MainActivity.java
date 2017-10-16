@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager;
+package com.asudevelopers.financemanager.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,27 +12,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.ui.fragment.LendingFragment;
 import com.asudevelopers.financemanager.ui.fragment.OverviewFragment;
+import com.asudevelopers.financemanager.ui.fragment.SettingsFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         displaySelectedFragment(R.id.nav_overview);
@@ -40,7 +54,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -50,28 +63,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, R.string.settings, Toast.LENGTH_SHORT).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     private void displaySelectedFragment(int itemId) {
-
         Fragment fragment = null;
         switch (itemId) {
             case R.id.nav_overview:
@@ -80,19 +86,18 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_lending:
                 fragment = new LendingFragment();
                 break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                break;
         }
-
         if (fragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content_frame, fragment);
             transaction.commit();
         }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedFragment(item.getItemId());

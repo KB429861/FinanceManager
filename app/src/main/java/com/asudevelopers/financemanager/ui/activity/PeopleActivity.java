@@ -90,7 +90,7 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
         }
         String[] from = {"Name", "Phone"};
         int[] to = {R.id.tv_name, R.id.tv_phone};
-        SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.fragment_person_item, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(this, data, R.layout.item_person, from, to);
         listView.setAdapter(adapter);
     }
 

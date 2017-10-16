@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_default" />
+        <include layout="@layout/toolbar"/>
 
         <include layout="@layout/content_person" />
 

@@ -13,14 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <include layout="@layout/toolbar"/>
 
         <include layout="@layout/content_people"/>
 
