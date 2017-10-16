@@ -24,16 +24,30 @@
             android:src="@drawable/ic_person"
             android:tint="@android:color/darker_gray"/>
 
-        <EditText
-            android:id="@+id/et_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginLeft="@dimen/content_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginStart="@dimen/content_margin"
-            android:hint="@string/name"
-            android:inputType="textPersonName"/>
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/test_name"
+                android:inputType="textPersonName"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -51,16 +65,30 @@
             android:src="@drawable/ic_phone"
             android:tint="@android:color/darker_gray"/>
 
-        <EditText
-            android:id="@+id/et_phone"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginLeft="@dimen/content_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginStart="@dimen/content_margin"
-            android:hint="@string/phone"
-            android:inputType="phone"/>
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"/>
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/test_phone"
+                android:inputType="phone"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

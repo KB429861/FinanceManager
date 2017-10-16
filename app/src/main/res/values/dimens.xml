@@ -8,4 +8,8 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="space_margin">8dp</dimen>
     <dimen name="content_margin">72dp</dimen>
+
+    <!--Text-->
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="label_text_size">12sp</dimen>
 </resources>

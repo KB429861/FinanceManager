@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="pref_sync"
-        android:summary="pref_sync_summ"
-        android:title="pref_sync"/>
 
+    <Preference
+        android:summary="@string/summary_people"
+        android:title="@string/people">
+        <intent
+            android:action="com.asudevelopers.financemanager.ui.activity.PeopleActivity"/>
+    </Preference>
 
 </PreferenceScreen>
