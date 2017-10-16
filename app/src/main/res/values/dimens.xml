@@ -6,5 +6,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="default_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="content_margin">8dp</dimen>
+    <dimen name="space_margin">8dp</dimen>
+    <dimen name="content_margin">72dp</dimen>
 </resources>

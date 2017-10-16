@@ -4,51 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     tools:context=".ui.activity.PersonActivity"
     tools:showIn="@layout/activity_person">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/content_margin"
-        android:orientation="horizontal">
+        android:layout_marginBottom="@dimen/space_margin"
+        android:layout_marginTop="@dimen/default_margin">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
             android:contentDescription="@string/name"
             android:src="@drawable/ic_person"
-            android:tint="@android:color/darker_gray" />
+            android:tint="@android:color/darker_gray"/>
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/content_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginStart="@dimen/content_margin"
+            android:hint="@string/name"
+            android:inputType="textPersonName"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/name"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:contentDescription="@string/phone"
             android:src="@drawable/ic_phone"
-            android:tint="@android:color/darker_gray" />
+            android:tint="@android:color/darker_gray"/>
 
         <EditText
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone" />
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/content_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginStart="@dimen/content_margin"
+            android:hint="@string/phone"
+            android:inputType="phone"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
