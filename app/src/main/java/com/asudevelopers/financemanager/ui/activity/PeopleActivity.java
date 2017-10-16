@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -25,7 +26,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
 
@@ -59,17 +59,23 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
         }
 
         peoplePresenter.loadPeople();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                @SuppressWarnings("unchecked")
+                HashMap<String, String> item = (HashMap<String, String>) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), PersonActivity.class);
+                intent.putExtra("PersonId", Integer.valueOf(item.get("Id")));
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.fab)
     public void onCreateClick(View view) {
         Intent intent = new Intent(this, PersonActivity.class);
         startActivity(intent);
-    }
-
-    @OnItemClick(R.id.lv_people)
-    public void onPersonClick(int position) {
-        Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -84,6 +90,7 @@ public class PeopleActivity extends MvpAppCompatActivity implements PeopleView {
         HashMap<String, String> map;
         for (Person person : people) {
             map = new HashMap<>();
+            map.put("Id", String.valueOf(person.getId()));
             map.put("Name", person.getName());
             map.put("Phone", person.getPhone());
             data.add(map);

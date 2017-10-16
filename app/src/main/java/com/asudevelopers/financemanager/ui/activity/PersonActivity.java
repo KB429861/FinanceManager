@@ -45,6 +45,11 @@ public class PersonActivity extends MvpAppCompatActivity implements PersonView {
         setContentView(R.layout.activity_person);
         ButterKnife.bind(this);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            personPresenter.loadPerson(bundle.getInt("PersonId"));
+        }
+
         toolbar.setTitle(R.string.person);
         setSupportActionBar(toolbar);
 
