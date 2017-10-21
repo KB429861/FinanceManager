@@ -128,5 +128,6 @@
 
     <!--Messages-->
     <string name="msg_saved">Saved</string>
+    <string name="search">Search</string>
 
 </resources>
