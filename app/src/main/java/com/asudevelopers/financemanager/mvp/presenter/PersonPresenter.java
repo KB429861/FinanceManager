@@ -1,50 +1,60 @@
 package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
+import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.view.PersonView;
 
-import io.reactivex.Single;
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class PersonPresenter extends MvpPresenter<PersonView> {
+public class PersonPresenter extends BasePresenter<PersonView> {
 
-    private AppDatabase database;
+    private Person person;
 
     public PersonPresenter(AppDatabase database) {
-        this.database = database;
+        super(database);
     }
 
-    public void savePerson(Person person) {
-        Single.just(person)
-                .observeOn(Schedulers.io())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(new Consumer<Person>() {
+    public void savePersonInfo(final String name, final String phone) {
+        Completable.fromAction(
+                new Action() {
                     @Override
-                    public void accept(Person person) throws Exception {
+                    public void run() {
+                        person.setName(name);
+                        person.setPhone(phone);
                         database.personDao().insertPeople(person);
                     }
-                });
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() {
+                                getViewState().showMessage(R.string.msg_saved);
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        });
     }
 
-    public void loadPerson(int personId) {
-        database.personDao().selectPerson(personId)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(new Consumer<Person>() {
-                    @Override
-                    public void accept(Person person) {
-                        try {
-                            getViewState().showPerson(person);
-                        } catch (Exception e) {
-                            getViewState().showError(e);
-                        }
-                    }
-                });
+    public void loadAndShowPerson(Person person) {
+        if (person == null) {
+            this.person = new Person();
+        } else {
+            this.person = person;
+        }
+        getViewState().showPerson(this.person);
     }
 }

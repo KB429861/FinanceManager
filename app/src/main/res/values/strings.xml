@@ -126,4 +126,7 @@
     <!--Preferences-->
     <string name="summary_people">Manage people</string>
 
+    <!--Messages-->
+    <string name="msg_saved">Saved</string>
+
 </resources>

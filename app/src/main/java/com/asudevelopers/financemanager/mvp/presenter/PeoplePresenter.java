@@ -1,7 +1,7 @@
 package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
+import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
@@ -9,37 +9,42 @@ import com.asudevelopers.financemanager.mvp.view.PeopleView;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DefaultSubscriber;
 
 @InjectViewState
-public class PeoplePresenter extends MvpPresenter<PeopleView> {
+public class PeoplePresenter extends BasePresenter<PeopleView> {
 
-    private AppDatabase database;
+    private List<Person> people;
 
     public PeoplePresenter(AppDatabase database) {
-        this.database = database;
+        super(database);
     }
 
     public void loadPeople() {
         database.personDao().selectPeople()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe(new DefaultSubscriber<List<Person>>() {
-                    @Override
-                    public void onNext(List<Person> people) {
-                        getViewState().showPeople(people);
-                    }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Consumer<List<Person>>() {
+                            @Override
+                            public void accept(List<Person> people) {
+                                getViewState().showPeople(people);
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        });
+    }
 
-                    @Override
-                    public void onError(Throwable throwable) {
-                        getViewState().showError(throwable);
-                    }
+    public void setPeople(List<Person> people) {
+        this.people = people;
+    }
 
-                    @Override
-                    public void onComplete() {
-                        getViewState().showComplete();
-                    }
-                });
+    public Person getPerson(int position) {
+        return people.get(position);
     }
 }
