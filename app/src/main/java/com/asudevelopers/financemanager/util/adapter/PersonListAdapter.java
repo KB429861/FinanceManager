@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.util;
+package com.asudevelopers.financemanager.util.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,14 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.mvp.model.entity.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 
 import java.util.List;
 
-public class PersonAdapter extends ArrayAdapter<Person> {
+public class PersonListAdapter extends ArrayAdapter<Person> {
 
-    public PersonAdapter(@NonNull Context context, @NonNull List<Person> objects) {
-        super(context, R.layout.item_person, objects);
+    public PersonListAdapter(@NonNull Context context, @NonNull List<Person> objects) {
+        super(context, R.layout.item_person_list, objects);
     }
 
     @NonNull
@@ -28,7 +28,7 @@ public class PersonAdapter extends ArrayAdapter<Person> {
         if (convertView == null || convertView.getTag() == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.item_person, parent, false);
+            convertView = inflater.inflate(R.layout.item_person_list, parent, false);
             viewHolder.nameTextView = convertView.findViewById(R.id.tv_name);
             viewHolder.phoneTextView = convertView.findViewById(R.id.tv_phone);
         } else {

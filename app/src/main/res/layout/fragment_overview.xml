@@ -7,9 +7,9 @@
     tools:context=".ui.fragment.OverviewFragment">
 
     <Button
-        android:id="@+id/btn_people"
+        android:id="@+id/btn_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/people"/>
+        android:text="@string/transaction"/>
 
 </LinearLayout>

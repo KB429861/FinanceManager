@@ -40,6 +40,11 @@
             android:label="@string/title_activity_person"
             android:windowSoftInputMode="adjustResize">
         </activity>
+        <activity
+            android:name=".ui.activity.TransactionActivity"
+            android:label="@string/title_activity_transaction"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
     </application>
 
 </manifest>

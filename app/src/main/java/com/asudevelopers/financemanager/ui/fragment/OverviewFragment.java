@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.ui.activity.PeopleActivity;
+import com.asudevelopers.financemanager.ui.activity.TransactionActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,9 +32,9 @@ public class OverviewFragment extends Fragment {
         getActivity().setTitle("Overview");
     }
 
-    @OnClick(R.id.btn_people)
-    public void onPeopleClick(View view) {
-        Intent intent = new Intent(getActivity(), PeopleActivity.class);
+    @OnClick(R.id.btn_create)
+    public void onTransactionClick(View view) {
+        Intent intent = new Intent(getActivity(), TransactionActivity.class);
         startActivity(intent);
     }
 }

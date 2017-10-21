@@ -13,10 +13,10 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.base.BaseActivity;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
-import com.asudevelopers.financemanager.mvp.model.entity.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 import com.asudevelopers.financemanager.mvp.presenter.PeoplePresenter;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
-import com.asudevelopers.financemanager.util.PersonAdapter;
+import com.asudevelopers.financemanager.util.adapter.PersonListAdapter;
 
 import java.util.List;
 
@@ -84,7 +84,7 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
     @Override
     public void showPeople(List<Person> people) {
         peoplePresenter.setPeople(people);
-        PersonAdapter adapter = new PersonAdapter(this, people);
+        PersonListAdapter adapter = new PersonListAdapter(this, people);
         listView.setAdapter(adapter);
     }
 }

@@ -129,5 +129,7 @@
     <!--Messages-->
     <string name="msg_saved">Saved</string>
     <string name="search">Search</string>
+    <string name="transaction">Transaction</string>
+    <string name="title_activity_transaction">Transaction</string>
 
 </resources>

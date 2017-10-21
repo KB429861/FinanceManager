@@ -1,34 +1,21 @@
-package com.asudevelopers.financemanager.mvp.model.entity;
+package com.asudevelopers.financemanager.mvp.model.entity.person;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 
-import java.io.Serializable;
+import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
 
 @Entity(tableName = "people")
-public class Person implements Serializable {
+public class Person extends BaseEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
     private String name;
     private String phone;
 
     public Person() {
     }
 
-    @Ignore
     public Person(String name, String phone) {
         this.name = name;
         this.phone = phone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

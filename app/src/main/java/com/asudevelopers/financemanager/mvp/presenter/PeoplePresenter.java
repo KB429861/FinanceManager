@@ -3,7 +3,7 @@ package com.asudevelopers.financemanager.mvp.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
-import com.asudevelopers.financemanager.mvp.model.entity.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
 
 import java.util.List;

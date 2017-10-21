@@ -3,12 +3,17 @@ package com.asudevelopers.financemanager.mvp.model.common;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.asudevelopers.financemanager.mvp.model.dao.PersonDao;
-import com.asudevelopers.financemanager.mvp.model.entity.Person;
+import com.asudevelopers.financemanager.mvp.model.dao.TransactionDao;
+import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.transaction.PersonTransaction;
+import com.asudevelopers.financemanager.util.converter.Converters;
 
-@Database(entities = {Person.class}, version = 1)
+@Database(entities = {Person.class, PersonTransaction.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "FinanceManager.db";
@@ -24,4 +29,6 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract PersonDao personDao();
+
+    public abstract TransactionDao transactionDao();
 }

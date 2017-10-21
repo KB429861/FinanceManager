@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
-import com.asudevelopers.financemanager.mvp.model.entity.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 import com.asudevelopers.financemanager.mvp.view.PersonView;
 
 import io.reactivex.Completable;
@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class PersonPresenter extends BasePresenter<PersonView> {
 
-    private Person person;
+    private Person person = null;
 
     public PersonPresenter(AppDatabase database) {
         super(database);
@@ -27,9 +27,18 @@ public class PersonPresenter extends BasePresenter<PersonView> {
                 new Action() {
                     @Override
                     public void run() {
+                        boolean isUpdate = true;
+                        if (person == null) {
+                            person = new Person();
+                            isUpdate = false;
+                        }
                         person.setName(name);
                         person.setPhone(phone);
-                        database.personDao().insertPeople(person);
+                        if (isUpdate) {
+                            database.personDao().updatePeople(person);
+                        } else {
+                            database.personDao().insertPeople(person);
+                        }
                     }
                 })
                 .subscribeOn(Schedulers.newThread())
@@ -50,11 +59,9 @@ public class PersonPresenter extends BasePresenter<PersonView> {
     }
 
     public void loadAndShowPerson(Person person) {
-        if (person == null) {
-            this.person = new Person();
-        } else {
-            this.person = person;
+        this.person = person;
+        if (person != null) {
+            getViewState().showPerson(person);
         }
-        getViewState().showPerson(this.person);
     }
 }
