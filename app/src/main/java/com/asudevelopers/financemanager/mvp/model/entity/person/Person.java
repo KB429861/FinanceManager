@@ -7,7 +7,8 @@ import android.arch.persistence.room.Index;
 import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
 
 @Entity(tableName = "people",
-        indices = @Index("id"))
+        indices = {
+                @Index("id")})
 public class Person extends BaseEntity {
 
     private String name;

@@ -8,11 +8,16 @@ import android.content.Context;
 
 import com.asudevelopers.financemanager.mvp.model.dao.PersonDao;
 import com.asudevelopers.financemanager.mvp.model.dao.TransactionDao;
+import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
+import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
-import com.asudevelopers.financemanager.mvp.model.entity.transaction.PersonTransaction;
+import com.asudevelopers.financemanager.mvp.model.entity.transaction.LendTransaction;
 import com.asudevelopers.financemanager.util.converter.Converters;
 
-@Database(entities = {Person.class, PersonTransaction.class}, version = 1)
+@Database(
+        entities = {
+                Currency.class, Account.class, Person.class, LendTransaction.class},
+        version = 1)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
