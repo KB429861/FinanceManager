@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8c5f8dc9df53b5b7fce2d7d8c4dc50c7",
+    "identityHash": "c0b9f4fe906774a6cc86974f330eeef8",
     "entities": [
       {
         "tableName": "people",
@@ -33,16 +33,31 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_people_id",
+            "unique": false,
+            "columnNames": [
+              "id"
+            ],
+            "createSql": "CREATE  INDEX `index_people_id` ON `${TABLE_NAME}` (`id`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
         "tableName": "person_transactions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `person_id` INTEGER NOT NULL, FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personId",
+            "columnName": "person_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -57,12 +72,6 @@
             "columnName": "amount",
             "affinity": "REAL",
             "notNull": true
-          },
-          {
-            "fieldPath": "personId",
-            "columnName": "person_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -71,7 +80,16 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_person_transactions_person_id",
+            "unique": false,
+            "columnNames": [
+              "person_id"
+            ],
+            "createSql": "CREATE  INDEX `index_person_transactions_person_id` ON `${TABLE_NAME}` (`person_id`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "people",
@@ -89,7 +107,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8c5f8dc9df53b5b7fce2d7d8c4dc50c7\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c0b9f4fe906774a6cc86974f330eeef8\")"
     ]
   }
 }
