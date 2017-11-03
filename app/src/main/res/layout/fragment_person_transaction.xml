@@ -38,6 +38,13 @@
 
     </RelativeLayout>
 
+    <TextView
+        style="@style/Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_margin"
+        android:text="@string/account" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
