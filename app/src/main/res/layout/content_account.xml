@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.AccountActivity"
+    tools:showIn="@layout/activity_account">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_margin"
+        android:layout_marginTop="@dimen/default_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:contentDescription="@string/name"
+            android:src="@drawable/ic_credit_card"
+            android:tint="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/content_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginStart="@dimen/content_margin"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/test_account"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:contentDescription="@string/balance"
+            android:src="@drawable/ic_account_balance_wallet"
+            android:tint="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/content_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginStart="@dimen/content_margin"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/balance" />
+
+            <EditText
+                android:id="@+id/et_balance"
+                style="@style/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/test_amount"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:contentDescription="@string/currency"
+            android:src="@drawable/ic_wc"
+            android:tint="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/content_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginStart="@dimen/content_margin"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/currency" />
+
+            <Spinner
+                android:id="@+id/spn_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_currency_spinner" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

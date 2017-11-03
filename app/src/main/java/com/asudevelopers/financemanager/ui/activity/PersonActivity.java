@@ -18,6 +18,8 @@ import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 import com.asudevelopers.financemanager.mvp.presenter.PersonPresenter;
 import com.asudevelopers.financemanager.mvp.view.PersonView;
+import com.asudevelopers.financemanager.util.validation.TextValidator;
+import com.asudevelopers.financemanager.util.validation.Validation;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,14 +63,38 @@ public class PersonActivity extends BaseActivity implements PersonView {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
+
+        registerViews();
+    }
+
+    private void registerViews() {
+        nameEditText.addTextChangedListener(new TextValidator(nameEditText) {
+            @Override
+            public void validate(EditText editText) {
+                Validation.hasText(editText, getString(R.string.msg_empty_field));
+            }
+        });
+        phoneEditText.addTextChangedListener(new TextValidator(phoneEditText) {
+            @Override
+            public void validate(EditText editText) {
+                Validation.isPhoneNumber(editText, getString(R.string.msg_invalid_phone));
+            }
+        });
     }
 
     @OnClick(R.id.fab)
     public void onSaveClick(View view) {
-        String name = nameEditText.getText().toString();
-        String phone = phoneEditText.getText().toString();
-        personPresenter.savePersonInfo(name, phone);
-        onBackPressed();
+        if (isValid()) {
+            String name = nameEditText.getText().toString();
+            String phone = phoneEditText.getText().toString();
+            personPresenter.savePersonInfo(name, phone);
+            onBackPressed();
+        }
+    }
+
+    private boolean isValid() {
+        return Validation.hasText(nameEditText, getString(R.string.msg_empty_field)) &&
+                Validation.isPhoneNumber(phoneEditText, getString(R.string.msg_invalid_amount));
     }
 
     @OnClick(R.id.btn_search)
@@ -95,7 +121,10 @@ public class PersonActivity extends BaseActivity implements PersonView {
     private void contactPicked(Intent data) {
         try {
             Uri uri = data.getData();
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            Cursor cursor = null;
+            if (uri != null) {
+                cursor = getContentResolver().query(uri, null, null, null, null);
+            }
             if (cursor != null) {
                 cursor.moveToFirst();
                 int phoneIndex = cursor.getColumnIndex(

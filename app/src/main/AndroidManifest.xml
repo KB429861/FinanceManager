@@ -14,16 +14,16 @@
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
                     android:host="java-lang-programming"
-                    android:scheme="android-app-google-plus-demo"/>
+                    android:scheme="android-app-google-plus-demo" />
             </intent-filter>
         </activity>
         <activity
@@ -31,20 +31,22 @@
             android:label="@string/title_activity_people"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="com.asudevelopers.financemanager.ui.activity.PeopleActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.asudevelopers.financemanager.ui.activity.PeopleActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.PersonActivity"
             android:label="@string/title_activity_person"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activity.TransactionActivity"
             android:label="@string/title_activity_transaction"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.activity.AccountActivity"
+            android:label="@string/title_activity_account"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

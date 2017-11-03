@@ -17,8 +17,18 @@ public class Currency extends BaseEntity {
 
     private double value;
 
+    public Currency() {
+    }
+
+    @Ignore
+    public Currency(String name, String charCode, double value) {
+        this.name = name;
+        this.charCode = charCode;
+        this.value = value;
+    }
+
     public String getName() {
-        return name;
+        return "DODOD";
     }
 
     public void setName(String name) {

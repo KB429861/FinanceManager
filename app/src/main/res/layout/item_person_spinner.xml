@@ -5,13 +5,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tv_name"
-        style="?android:attr/spinnerItemStyle"
+        style="@style/Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:text="@string/test_name"
-        android:textAlignment="inherit"/>
+        android:text="@string/test_name" />
 
 </RelativeLayout>

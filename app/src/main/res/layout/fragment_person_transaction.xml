@@ -11,13 +11,56 @@
         style="@style/Label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/person"/>
+        android:text="@string/person" />
 
-    <Spinner
-        android:id="@+id/spn_person"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_person_spinner"
-        />
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/spn_person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_toLeftOf="@id/btn_person"
+            android:layout_toStartOf="@id/btn_person"
+            tools:listitem="@layout/item_person_spinner" />
+
+        <Button
+            android:id="@+id/btn_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/add" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/spn_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_toLeftOf="@id/btn_account"
+            android:layout_toStartOf="@id/btn_account"
+            tools:listitem="@layout/item_account_spinner" />
+
+        <Button
+            android:id="@+id/btn_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/add" />
+
+    </RelativeLayout>
 
 </LinearLayout>
