@@ -9,4 +9,10 @@
             android:action="com.asudevelopers.financemanager.ui.activity.PeopleActivity"/>
     </Preference>
 
+    <Preference
+        android:summary="@string/summary_currencies"
+        android:title="@string/currencies">
+        <intent android:action="com.asudevelopers.financemanager.ui.activity.CurrenciesActivity" />
+    </Preference>
+
 </PreferenceScreen>

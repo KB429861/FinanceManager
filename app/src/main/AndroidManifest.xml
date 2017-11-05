@@ -38,6 +38,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activity.CurrenciesActivity"
+            android:label="@string/title_activity_currencies"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.asudevelopers.financemanager.ui.activity.CurrenciesActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.activity.PersonActivity"
             android:label="@string/title_activity_person"
             android:windowSoftInputMode="adjustResize" />

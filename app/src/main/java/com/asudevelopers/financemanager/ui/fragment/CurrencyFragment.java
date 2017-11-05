@@ -2,25 +2,23 @@ package com.asudevelopers.financemanager.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.base.BaseFragment;
 
-public class LendingFragment extends Fragment {
+import butterknife.ButterKnife;
+
+public class CurrencyFragment extends BaseFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_lending, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle(R.string.lending);
+        View view = inflater.inflate(R.layout.fragment_currency, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 }

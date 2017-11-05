@@ -16,7 +16,6 @@ import butterknife.OnClick;
 
 public class OverviewFragment extends Fragment {
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -29,7 +28,7 @@ public class OverviewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Overview");
+        getActivity().setTitle(R.string.overview);
     }
 
     @OnClick(R.id.btn_create)

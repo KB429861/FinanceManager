@@ -144,5 +144,8 @@
     <string name="msg_invalid_amount">Invalid amount</string>
     <string name="msg_null_currency">Null currency</string>
     <string name="msg_invalid_phone">Invalid phone number</string>
+    <string name="summary_currencies">Manage currencies</string>
+    <string name="currencies">Currencies</string>
+    <string name="title_activity_currencies">Currencies</string>
 
 </resources>
