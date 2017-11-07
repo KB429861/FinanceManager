@@ -2,17 +2,23 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c60917854badc8018f6308f5a6894470",
+    "identityHash": "efe7213f6a6a836c0a23d5b25c18935f",
     "entities": [
       {
         "tableName": "currencies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `char_code` TEXT, `value` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `char_code` TEXT, `value` REAL NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "charCode",
@@ -378,7 +384,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c60917854badc8018f6308f5a6894470\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"efe7213f6a6a836c0a23d5b25c18935f\")"
     ]
   }
 }

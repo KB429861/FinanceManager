@@ -1,7 +1,6 @@
 package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
@@ -24,31 +23,6 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
         super(database);
     }
 
-    public void saveCurrency(final Currency currency) {
-        Completable.fromAction(
-                new Action() {
-                    @Override
-                    public void run() {
-                        database.currencyDao().insertCurrencies(currency);
-                    }
-                })
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        new Action() {
-                            @Override
-                            public void run() {
-                                getViewState().showMessage(R.string.msg_saved);
-                            }
-                        },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                getViewState().showError(throwable);
-                            }
-                        });
-    }
-
     public void loadCurrencies() {
         database.currencyDao().selectCurrencies()
                 .subscribeOn(Schedulers.newThread())
@@ -65,7 +39,8 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
                             public void accept(Throwable throwable) {
                                 getViewState().showError(throwable);
                             }
-                        });
+                        }
+                );
     }
 
     public List<Currency> getCurrencies() {
@@ -85,7 +60,84 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
         return 0;
     }
 
-    public Currency getCurrency(int position) {
-        return currencies.get(position);
+    private void insertCurrency(final Currency currency) {
+        Completable.fromAction(
+                new Action() {
+                    @Override
+                    public void run() {
+                        database.currencyDao().insertCurrencies(currency);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        }
+                )
+                .subscribe();
+    }
+
+    private void updateCurrency(final Currency currency) {
+        Completable.fromAction(
+                new Action() {
+                    @Override
+                    public void run() {
+                        database.currencyDao().updateCurrencies(currency);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        }
+                )
+                .subscribe();
+    }
+
+    public void updateCurrencies(String[] charCodes, String[] names) {
+        for (int i = 0; i < charCodes.length; i++) {
+            final String charCode = charCodes[i];
+            final String name = names[i];
+            database.currencyDao().selectCurrency(charCode)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSuccess(
+                            new Consumer<Currency>() {
+                                @Override
+                                public void accept(Currency currency) {
+                                    currency.setName(name);
+                                    updateCurrency(currency);
+                                }
+                            }
+                    )
+                    .doOnComplete(
+                            new Action() {
+                                @Override
+                                public void run() {
+                                    Currency currency = new Currency();
+                                    currency.setCharCode(charCode);
+                                    currency.setName(name);
+                                    insertCurrency(currency);
+                                }
+                            }
+                    )
+                    .doOnError(
+                            new Consumer<Throwable>() {
+                                @Override
+                                public void accept(Throwable throwable) {
+                                    getViewState().showError(throwable);
+                                }
+                            }
+                    )
+                    .subscribe();
+        }
     }
 }

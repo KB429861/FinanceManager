@@ -11,6 +11,7 @@ import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 
 @Dao
 public interface CurrencyDao {
@@ -20,6 +21,9 @@ public interface CurrencyDao {
 
     @Query("select * from currencies where id = :currencyId")
     Flowable<Currency> selectCurrency(int currencyId);
+
+    @Query("select * from currencies where char_code = :charCode")
+    Maybe<Currency> selectCurrency(String charCode);
 
     @Insert
     void insertCurrencies(Currency... currencies);

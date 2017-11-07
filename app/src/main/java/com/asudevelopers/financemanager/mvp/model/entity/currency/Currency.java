@@ -11,7 +11,6 @@ import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
         indices = @Index(value = "char_code", unique = true))
 public class Currency extends BaseEntity {
 
-    @Ignore
     private String name;
 
     @ColumnInfo(name = "char_code")
@@ -30,7 +29,7 @@ public class Currency extends BaseEntity {
     }
 
     public String getName() {
-        return "DODOD";
+        return name;
     }
 
     public void setName(String name) {

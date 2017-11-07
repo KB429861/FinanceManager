@@ -8,22 +8,31 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.base.BaseActivity;
+import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
+import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
+import com.asudevelopers.financemanager.mvp.presenter.CurrenciesPresenter;
+import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
 import com.asudevelopers.financemanager.ui.fragment.LendingFragment;
 import com.asudevelopers.financemanager.ui.fragment.OverviewFragment;
 import com.asudevelopers.financemanager.ui.fragment.SettingsFragment;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener,
+        CurrenciesView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -33,6 +42,14 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
+
+    @InjectPresenter
+    CurrenciesPresenter currenciesPresenter;
+
+    @ProvidePresenter
+    CurrenciesPresenter provideCurrenciesPresenter() {
+        return new CurrenciesPresenter(AppDatabase.getInstance(this));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +67,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         displaySelectedFragment(R.id.nav_overview);
+
+        currenciesPresenter.updateCurrencies(
+                getResources().getStringArray(R.array.currency_char_codes),
+                getResources().getStringArray(R.array.currency_names)
+        );
     }
 
     @Override
@@ -102,5 +124,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedFragment(item.getItemId());
         return true;
+    }
+
+    @Override
+    public void showCurrencies(List<Currency> currencies) {
+        currenciesPresenter.setCurrencies(currencies);
     }
 }
