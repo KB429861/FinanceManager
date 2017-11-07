@@ -4,16 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.base.BaseActivity;
 import com.asudevelopers.financemanager.ui.fragment.PersonTransactionFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TransactionActivity extends AppCompatActivity {
+public class TransactionActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

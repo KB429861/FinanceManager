@@ -79,7 +79,7 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_save) {
+        if (id == R.id.action_add) {
             Intent intent = new Intent(this, PersonActivity.class);
             startActivity(intent);
             return true;
