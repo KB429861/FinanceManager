@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7372a986b3707f013bae8cf4939d4fc9",
+    "identityHash": "c60917854badc8018f6308f5a6894470",
     "entities": [
       {
         "tableName": "currencies",
@@ -33,7 +33,16 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_currencies_char_code",
+            "unique": true,
+            "columnNames": [
+              "char_code"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_currencies_char_code` ON `${TABLE_NAME}` (`char_code`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -369,7 +378,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7372a986b3707f013bae8cf4939d4fc9\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c60917854badc8018f6308f5a6894470\")"
     ]
   }
 }

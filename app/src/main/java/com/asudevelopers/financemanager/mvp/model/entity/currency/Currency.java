@@ -3,10 +3,12 @@ package com.asudevelopers.financemanager.mvp.model.entity.currency;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 
 import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
 
-@Entity(tableName = "currencies")
+@Entity(tableName = "currencies",
+        indices = @Index(value = "char_code", unique = true))
 public class Currency extends BaseEntity {
 
     @Ignore
