@@ -18,7 +18,7 @@
             android:layout_marginStart="@dimen/default_margin"
             android:contentDescription="@string/name"
             android:src="@drawable/ic_person"
-            android:tint="@color/label_color"/>
+            android:tint="@color/label_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,14 +33,14 @@
                 style="@style/Label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"/>
+                android:text="@string/name" />
 
             <TextView
                 android:id="@+id/tv_name"
                 style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/test_name"/>
+                android:text="@string/test_name" />
 
         </LinearLayout>
 
@@ -59,7 +59,7 @@
             android:layout_marginStart="@dimen/default_margin"
             android:contentDescription="@string/phone"
             android:src="@drawable/ic_phone"
-            android:tint="@color/label_color"/>
+            android:tint="@color/label_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,14 +74,14 @@
                 style="@style/Label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/phone"/>
+                android:text="@string/phone" />
 
             <TextView
                 android:id="@+id/tv_phone"
                 style="@style/Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/test_phone"/>
+                android:text="@string/test_phone" />
 
         </LinearLayout>
 

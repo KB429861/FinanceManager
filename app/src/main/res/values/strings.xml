@@ -147,5 +147,7 @@
     <string name="summary_currencies">Manage currencies</string>
     <string name="currencies">Currencies</string>
     <string name="title_activity_currencies">Currencies</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
 </resources>
