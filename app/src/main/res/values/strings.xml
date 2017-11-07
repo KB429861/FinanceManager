@@ -136,7 +136,7 @@
     <string name="balance">Balance</string>
     <string name="test_amount">12.5</string>
     <string name="currency">Currency</string>
-    <string name="test_currency">Dollar</string>
+    <string name="test_currency">US Dollar</string>
     <string name="test_charcode">USD</string>
     <string name="title_activity_account">AccountActivity</string>
     <string name="account">Account</string>
