@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -23,7 +24,6 @@ import com.asudevelopers.financemanager.util.validation.Validation;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class PersonActivity extends BaseActivity implements PersonView {
 
@@ -82,8 +82,7 @@ public class PersonActivity extends BaseActivity implements PersonView {
         });
     }
 
-    @OnClick(R.id.fab)
-    public void onSaveClick(View view) {
+    public void save() {
         if (isValid()) {
             String name = nameEditText.getText().toString();
             String phone = phoneEditText.getText().toString();
@@ -97,13 +96,31 @@ public class PersonActivity extends BaseActivity implements PersonView {
                 Validation.isPhoneNumber(phoneEditText, getString(R.string.msg_invalid_amount));
     }
 
-    @OnClick(R.id.btn_search)
-    public void onSearchClick(View view) {
+    public void search() {
         Intent contactPickerIntent = new Intent(
                 Intent.ACTION_PICK,
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI
         );
         startActivityForResult(contactPickerIntent, RESULT_PICK_CONTACT);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_person, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            save();
+            return true;
+        } else if (id == R.id.action_search) {
+            search();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -139,12 +156,6 @@ public class PersonActivity extends BaseActivity implements PersonView {
         } catch (Exception e) {
             showError(e);
         }
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
     }
 
     @Override

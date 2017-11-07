@@ -113,14 +113,8 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.account, menu);
+        getMenuInflater().inflate(R.menu.menu_account, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

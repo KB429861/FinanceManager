@@ -37,10 +37,4 @@ public class TransactionActivity extends AppCompatActivity {
         transaction.replace(R.id.content_frame, new PersonTransactionFragment());
         transaction.commit();
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 }

@@ -6,4 +6,5 @@
 
     <color name="label_color">@android:color/darker_gray</color>
     <color name="text_color">@android:color/white</color>
+    <color name="action_button_color">@android:color/white</color>
 </resources>

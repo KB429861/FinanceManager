@@ -27,9 +27,15 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseV
             if (drawable != null) {
                 drawable.mutate();
                 drawable.setColorFilter(
-                        getResources().getColor(R.color.text_color), PorterDuff.Mode.SRC_ATOP);
+                        getResources().getColor(R.color.action_button_color), PorterDuff.Mode.SRC_ATOP);
             }
         }
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
         return true;
     }
 }

@@ -51,10 +51,4 @@ public class CurrenciesActivity extends BaseActivity {
         adapter.addFragment(new CurrenciesFragment(), getString(R.string.currencies));
         viewPager.setAdapter(adapter);
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 }
