@@ -3,7 +3,8 @@ package com.asudevelopers.financemanager.ui.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -26,7 +27,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class AccountActivity extends BaseActivity implements AccountView, CurrenciesView {
 
@@ -96,8 +96,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
         });
     }
 
-    @OnClick(R.id.fab)
-    public void onSaveClick(View view) {
+    public void save() {
         if (isValid()) {
             String name = nameEditText.getText().toString();
             double amount = Double.valueOf(balanceEditText.getText().toString());
@@ -117,6 +116,22 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.account, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            save();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
