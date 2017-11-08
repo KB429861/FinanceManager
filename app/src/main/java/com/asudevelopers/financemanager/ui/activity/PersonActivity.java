@@ -1,11 +1,13 @@
 package com.asudevelopers.financemanager.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,7 +84,7 @@ public class PersonActivity extends BaseActivity implements PersonView {
         });
     }
 
-    public void save() {
+    private void save() {
         if (isValid()) {
             String name = nameEditText.getText().toString();
             String phone = phoneEditText.getText().toString();
@@ -96,7 +98,7 @@ public class PersonActivity extends BaseActivity implements PersonView {
                 Validation.isPhoneNumber(phoneEditText, getString(R.string.msg_invalid_amount));
     }
 
-    public void search() {
+    private void search() {
         Intent contactPickerIntent = new Intent(
                 Intent.ACTION_PICK,
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI
@@ -104,9 +106,31 @@ public class PersonActivity extends BaseActivity implements PersonView {
         startActivityForResult(contactPickerIntent, RESULT_PICK_CONTACT);
     }
 
+    private void delete() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.alert_deleting_person_title)
+                .setMessage(R.string.msg_deleting_person)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        personPresenter.deletePerson();
+                        onBackPressed();
+                    }
+                })
+                .setNegativeButton(R.string.no, null)
+                .show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_person, menu);
+        MenuItem deleteItem = menu.findItem(R.id.action_delete);
+        if (personPresenter.isEditMode()) {
+            deleteItem.setVisible(true);
+        } else {
+            deleteItem.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -118,6 +142,9 @@ public class PersonActivity extends BaseActivity implements PersonView {
             return true;
         } else if (id == R.id.action_search) {
             search();
+            return true;
+        } else if (id == R.id.action_delete) {
+            delete();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -140,7 +167,8 @@ public class PersonActivity extends BaseActivity implements PersonView {
             Uri uri = data.getData();
             Cursor cursor = null;
             if (uri != null) {
-                cursor = getContentResolver().query(uri, null, null, null, null);
+                cursor = getContentResolver().query(
+                        uri, null, null, null, null);
             }
             if (cursor != null) {
                 cursor.moveToFirst();

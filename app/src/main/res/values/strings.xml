@@ -149,5 +149,10 @@
     <string name="title_activity_currencies">Currencies</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="msg_deleted">Deleted</string>
+    <string name="alert_deleting_person_title">Deleting person</string>
+    <string name="msg_deleting_person">Are you sure you want to delete this person?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

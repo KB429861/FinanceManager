@@ -64,4 +64,33 @@ public class PersonPresenter extends BasePresenter<PersonView> {
             getViewState().showPerson(person);
         }
     }
+
+    public void deletePerson() {
+        Completable.fromAction(
+                new Action() {
+                    @Override
+                    public void run() {
+                        database.personDao().deletePeople(person);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() {
+                                getViewState().showMessage(R.string.msg_deleted);
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        });
+    }
+
+    public boolean isEditMode() {
+        return person != null;
+    }
 }
