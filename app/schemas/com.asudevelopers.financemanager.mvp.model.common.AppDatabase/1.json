@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "efe7213f6a6a836c0a23d5b25c18935f",
+    "identityHash": "6bf418ea0b197f7bb5fb0807cc6bf480",
     "entities": [
       {
         "tableName": "currencies",
@@ -53,7 +53,7 @@
       },
       {
         "tableName": "accounts",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `amount` REAL NOT NULL, `currency_id` INTEGER NOT NULL, FOREIGN KEY(`currency_id`) REFERENCES `currencies`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `amount` REAL NOT NULL, `currency_char_code` TEXT, FOREIGN KEY(`currency_char_code`) REFERENCES `currencies`(`char_code`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -74,10 +74,10 @@
             "notNull": true
           },
           {
-            "fieldPath": "currencyId",
-            "columnName": "currency_id",
-            "affinity": "INTEGER",
-            "notNull": true
+            "fieldPath": "currencyCharCode",
+            "columnName": "currency_char_code",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -88,24 +88,24 @@
         },
         "indices": [
           {
-            "name": "index_accounts_currency_id",
+            "name": "index_accounts_currency_char_code",
             "unique": false,
             "columnNames": [
-              "currency_id"
+              "currency_char_code"
             ],
-            "createSql": "CREATE  INDEX `index_accounts_currency_id` ON `${TABLE_NAME}` (`currency_id`)"
+            "createSql": "CREATE  INDEX `index_accounts_currency_char_code` ON `${TABLE_NAME}` (`currency_char_code`)"
           }
         ],
         "foreignKeys": [
           {
             "table": "currencies",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
-              "currency_id"
+              "currency_char_code"
             ],
             "referencedColumns": [
-              "id"
+              "char_code"
             ]
           }
         ]
@@ -139,21 +139,12 @@
           ],
           "autoGenerate": true
         },
-        "indices": [
-          {
-            "name": "index_people_id",
-            "unique": false,
-            "columnNames": [
-              "id"
-            ],
-            "createSql": "CREATE  INDEX `index_people_id` ON `${TABLE_NAME}` (`id`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "lend_transactions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_id` INTEGER NOT NULL, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`currency_id`) REFERENCES `currencies`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_char_code` TEXT, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`currency_char_code`) REFERENCES `currencies`(`char_code`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -180,10 +171,10 @@
             "notNull": true
           },
           {
-            "fieldPath": "currencyId",
-            "columnName": "currency_id",
-            "affinity": "INTEGER",
-            "notNull": true
+            "fieldPath": "currencyCharCode",
+            "columnName": "currency_char_code",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "accountId",
@@ -214,12 +205,12 @@
             "createSql": "CREATE  INDEX `index_lend_transactions_account_id` ON `${TABLE_NAME}` (`account_id`)"
           },
           {
-            "name": "index_lend_transactions_currency_id",
+            "name": "index_lend_transactions_currency_char_code",
             "unique": false,
             "columnNames": [
-              "currency_id"
+              "currency_char_code"
             ],
-            "createSql": "CREATE  INDEX `index_lend_transactions_currency_id` ON `${TABLE_NAME}` (`currency_id`)"
+            "createSql": "CREATE  INDEX `index_lend_transactions_currency_char_code` ON `${TABLE_NAME}` (`currency_char_code`)"
           },
           {
             "name": "index_lend_transactions_person_id",
@@ -233,8 +224,8 @@
         "foreignKeys": [
           {
             "table": "accounts",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
               "account_id"
             ],
@@ -244,19 +235,19 @@
           },
           {
             "table": "currencies",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
-              "currency_id"
+              "currency_char_code"
             ],
             "referencedColumns": [
-              "id"
+              "char_code"
             ]
           },
           {
             "table": "people",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
               "person_id"
             ],
@@ -268,7 +259,7 @@
       },
       {
         "tableName": "borrow_transactions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_id` INTEGER NOT NULL, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`currency_id`) REFERENCES `currencies`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_char_code` TEXT, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`currency_char_code`) REFERENCES `currencies`(`char_code`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -295,10 +286,10 @@
             "notNull": true
           },
           {
-            "fieldPath": "currencyId",
-            "columnName": "currency_id",
-            "affinity": "INTEGER",
-            "notNull": true
+            "fieldPath": "currencyCharCode",
+            "columnName": "currency_char_code",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "accountId",
@@ -329,12 +320,12 @@
             "createSql": "CREATE  INDEX `index_borrow_transactions_account_id` ON `${TABLE_NAME}` (`account_id`)"
           },
           {
-            "name": "index_borrow_transactions_currency_id",
+            "name": "index_borrow_transactions_currency_char_code",
             "unique": false,
             "columnNames": [
-              "currency_id"
+              "currency_char_code"
             ],
-            "createSql": "CREATE  INDEX `index_borrow_transactions_currency_id` ON `${TABLE_NAME}` (`currency_id`)"
+            "createSql": "CREATE  INDEX `index_borrow_transactions_currency_char_code` ON `${TABLE_NAME}` (`currency_char_code`)"
           },
           {
             "name": "index_borrow_transactions_person_id",
@@ -362,10 +353,10 @@
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "currency_id"
+              "currency_char_code"
             ],
             "referencedColumns": [
-              "id"
+              "char_code"
             ]
           },
           {
@@ -384,7 +375,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"efe7213f6a6a836c0a23d5b25c18935f\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6bf418ea0b197f7bb5fb0807cc6bf480\")"
     ]
   }
 }

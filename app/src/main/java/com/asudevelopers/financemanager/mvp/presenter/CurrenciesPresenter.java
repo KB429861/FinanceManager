@@ -51,9 +51,9 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
         this.currencies = currencies;
     }
 
-    public int getCurrencyPosition(int id) {
+    public int getCurrencyPosition(String charCode) {
         for (int i = 0; i < currencies.size(); i++) {
-            if (currencies.get(i).getId() == id) {
+            if (currencies.get(i).getCharCode().equals(charCode)) {
                 return i;
             }
         }

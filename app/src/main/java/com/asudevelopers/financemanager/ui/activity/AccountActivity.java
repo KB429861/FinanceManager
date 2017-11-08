@@ -101,7 +101,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
             String name = nameEditText.getText().toString();
             double amount = Double.valueOf(balanceEditText.getText().toString());
             Currency currency = (Currency) currencySpinner.getSelectedItem();
-            accountPresenter.saveAccountInfo(name, amount, currency.getId());
+            accountPresenter.saveAccountInfo(name, amount, currency.getCharCode());
             onBackPressed();
         }
     }
@@ -132,7 +132,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
     public void showAccount(Account account) {
         nameEditText.setText(account.getName());
         balanceEditText.setText(String.valueOf(account.getAmount()));
-        int position = currenciesPresenter.getCurrencyPosition(account.getCurrencyId());
+        int position = currenciesPresenter.getCurrencyPosition(account.getCurrencyCharCode());
         currencySpinner.setSelection(position);
     }
 

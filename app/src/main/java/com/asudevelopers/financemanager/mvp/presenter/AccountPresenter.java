@@ -22,7 +22,7 @@ public class AccountPresenter extends BasePresenter<AccountView> {
         super(database);
     }
 
-    public void saveAccountInfo(final String name, final double amount, final int currencyId) {
+    public void saveAccountInfo(final String name, final double amount, final String charCode) {
         Completable.fromAction(
                 new Action() {
                     @Override
@@ -34,7 +34,7 @@ public class AccountPresenter extends BasePresenter<AccountView> {
                         }
                         account.setName(name);
                         account.setAmount(amount);
-                        account.setCurrencyId(currencyId);
+                        account.setCurrencyCharCode(charCode);
                         if (isUpdate) {
                             database.accountDao().updateAccounts(account);
                         } else {

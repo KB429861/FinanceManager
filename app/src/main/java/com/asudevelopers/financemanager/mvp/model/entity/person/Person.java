@@ -2,13 +2,10 @@ package com.asudevelopers.financemanager.mvp.model.entity.person;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
 
 import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
 
-@Entity(tableName = "people",
-        indices = {
-                @Index("id")})
+@Entity(tableName = "people")
 public class Person extends BaseEntity {
 
     private String name;

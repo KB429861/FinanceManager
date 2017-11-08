@@ -16,15 +16,15 @@ import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
                         childColumns = "account_id"),
                 @ForeignKey(
                         entity = Currency.class,
-                        parentColumns = "id",
-                        childColumns = "currency_id"),
+                        parentColumns = "char_code",
+                        childColumns = "currency_char_code"),
                 @ForeignKey(
                         entity = Person.class,
                         parentColumns = "id",
                         childColumns = "person_id")},
         indices = {
                 @Index("account_id"),
-                @Index("currency_id"),
+                @Index("currency_char_code"),
                 @Index("person_id")})
 public class BorrowTransaction extends PersonTransaction {
 }

@@ -11,8 +11,8 @@ public abstract class Transaction extends BaseEntity {
     private Date date;
     private double amount;
 
-    @ColumnInfo(name = "currency_id")
-    private int currencyId;
+    @ColumnInfo(name = "currency_char_code")
+    private String currencyCharCode;
 
     @ColumnInfo(name = "account_id")
     private int accountId;
@@ -35,12 +35,12 @@ public abstract class Transaction extends BaseEntity {
         this.amount = amount;
     }
 
-    public int getCurrencyId() {
-        return currencyId;
+    public String getCurrencyCharCode() {
+        return currencyCharCode;
     }
 
-    public void setCurrencyId(int currencyId) {
-        this.currencyId = currencyId;
+    public void setCurrencyCharCode(String currencyCharCode) {
+        this.currencyCharCode = currencyCharCode;
     }
 
     public int getAccountId() {
