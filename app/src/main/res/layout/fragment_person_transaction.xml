@@ -1,112 +1,171 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/default_margin"
-    android:orientation="vertical"
-    tools:context=".ui.fragment.PersonTransactionFragment">
-
-    <TextView
-        style="@style/Label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/person" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Spinner
-            android:id="@+id/spn_person"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_toLeftOf="@id/btn_person"
-            android:layout_toStartOf="@id/btn_person"
-            tools:listitem="@layout/item_person_spinner" />
-
-        <Button
-            android:id="@+id/btn_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/add" />
-
-    </RelativeLayout>
-
-    <TextView
-        style="@style/Label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_margin"
-        android:text="@string/account" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Spinner
-            android:id="@+id/spn_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginRight="@dimen/default_margin"
-            android:layout_toLeftOf="@id/btn_account"
-            android:layout_toStartOf="@id/btn_account"
-            tools:listitem="@layout/item_account_spinner" />
-
-        <Button
-            android:id="@+id/btn_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/add" />
-
-    </RelativeLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_margin"
-        android:orientation="horizontal">
+        android:layout_margin="@dimen/default_margin"
+        android:orientation="vertical"
+        tools:context=".ui.fragment.PersonTransactionFragment">
 
-        <Button
-            android:id="@+id/btn_date"
+        <TextView
+            style="@style/Label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_margin"
-            android:layout_marginRight="@dimen/space_margin"
-            android:layout_weight="1"
-            tools:ignore="ButtonStyle" />
+            android:text="@string/person" />
 
-        <Button
-            android:id="@+id/btn_time"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spn_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_toLeftOf="@id/btn_person"
+                android:layout_toStartOf="@id/btn_person"
+                tools:listitem="@layout/item_person_spinner" />
+
+            <Button
+                android:id="@+id/btn_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/add" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/Label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/space_margin"
-            android:layout_marginStart="@dimen/space_margin"
-            android:layout_weight="1"
-            tools:ignore="ButtonStyle" />
+            android:layout_marginTop="@dimen/space_margin"
+            android:text="@string/account" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spn_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_toLeftOf="@id/btn_account"
+                android:layout_toStartOf="@id/btn_account"
+                tools:listitem="@layout/item_account_spinner" />
+
+            <Button
+                android:id="@+id/btn_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/add" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_margin"
+                android:layout_marginRight="@dimen/space_margin"
+                android:layout_weight="1"
+                android:hint="@string/date"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/btn_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_margin"
+                android:layout_marginStart="@dimen/space_margin"
+                android:layout_weight="1"
+                android:hint="@string/time"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:text="@string/currency" />
+
+        <Spinner
+            android:id="@+id/spn_currency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_currency_spinner" />
+
+        <TextView
+            style="@style/Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:text="@string/amount" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_amount"
+                style="@style/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:layout_toLeftOf="@id/btn_toggle"
+                android:layout_toStartOf="@id/btn_toggle"
+                android:hint="@string/test_amount"
+                android:inputType="numberDecimal" />
+
+            <ToggleButton
+                android:id="@+id/btn_toggle"
+                style="@style/Base.TextAppearance.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textOff="@string/take"
+                android:textOn="@string/give" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:text="@string/description" />
+
+        <EditText
+            android:id="@+id/et_description"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
     </LinearLayout>
 
-    <TextView
-        style="@style/Label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_margin"
-        android:text="@string/currency" />
-
-    <Spinner
-        android:id="@+id/spn_currency"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_currency_spinner" />
-
-</LinearLayout>
+</ScrollView>
