@@ -128,6 +128,5 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void showCurrencies(List<Currency> currencies) {
-        currenciesPresenter.setCurrencies(currencies);
     }
 }

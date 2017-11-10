@@ -82,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_margin"
             android:layout_marginRight="@dimen/space_margin"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_time"
@@ -90,8 +91,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space_margin"
             android:layout_marginStart="@dimen/space_margin"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
+
+    <TextView
+        style="@style/Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_margin"
+        android:text="@string/currency" />
+
+    <Spinner
+        android:id="@+id/spn_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_currency_spinner" />
 
 </LinearLayout>

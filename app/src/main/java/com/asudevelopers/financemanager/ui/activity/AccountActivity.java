@@ -138,7 +138,6 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
 
     @Override
     public void showCurrencies(List<Currency> currencies) {
-        currenciesPresenter.setCurrencies(currencies);
         CurrencySpinnerAdapter adapter = new CurrencySpinnerAdapter(this, currencies);
         currencySpinner.setAdapter(adapter);
     }

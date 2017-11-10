@@ -19,16 +19,20 @@ import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.base.BaseFragment;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
+import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
 import com.asudevelopers.financemanager.mvp.presenter.AccountsPresenter;
+import com.asudevelopers.financemanager.mvp.presenter.CurrenciesPresenter;
 import com.asudevelopers.financemanager.mvp.presenter.DateTimePresenter;
 import com.asudevelopers.financemanager.mvp.presenter.PeoplePresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountsView;
+import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
 import com.asudevelopers.financemanager.mvp.view.DateTimeView;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
 import com.asudevelopers.financemanager.ui.activity.AccountActivity;
 import com.asudevelopers.financemanager.ui.activity.PersonActivity;
 import com.asudevelopers.financemanager.util.adapter.AccountSpinnerAdapter;
+import com.asudevelopers.financemanager.util.adapter.CurrencySpinnerAdapter;
 import com.asudevelopers.financemanager.util.adapter.PersonSpinnerAdapter;
 
 import java.text.DateFormat;
@@ -40,13 +44,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PersonTransactionFragment extends BaseFragment
-        implements PeopleView, AccountsView, DateTimeView {
+        implements PeopleView, AccountsView, DateTimeView, CurrenciesView {
 
     @BindView(R.id.spn_person)
     Spinner personSpinner;
 
     @BindView(R.id.spn_account)
     Spinner accountSpinner;
+
+    @BindView(R.id.spn_currency)
+    Spinner currencySpinner;
 
     @BindView(R.id.btn_date)
     Button dateButton;
@@ -63,6 +70,9 @@ public class PersonTransactionFragment extends BaseFragment
     @InjectPresenter
     DateTimePresenter dateTimePresenter;
 
+    @InjectPresenter
+    CurrenciesPresenter currenciesPresenter;
+
     @ProvidePresenter
     PeoplePresenter providePeoplePresenter() {
         return new PeoplePresenter(AppDatabase.getInstance(getContext()));
@@ -71,6 +81,11 @@ public class PersonTransactionFragment extends BaseFragment
     @ProvidePresenter
     AccountsPresenter provideAccountsPresenter() {
         return new AccountsPresenter(AppDatabase.getInstance(getContext()));
+    }
+
+    @ProvidePresenter
+    CurrenciesPresenter provideCurrenciesPresenter() {
+        return new CurrenciesPresenter(AppDatabase.getInstance(getContext()));
     }
 
     @Nullable
@@ -83,6 +98,7 @@ public class PersonTransactionFragment extends BaseFragment
 
         peoplePresenter.loadPeople();
         accountsPresenter.loadAccounts();
+        currenciesPresenter.loadCurrencies();
 
         dateTimePresenter.onCreateView();
 
@@ -101,6 +117,12 @@ public class PersonTransactionFragment extends BaseFragment
         accountsPresenter.setAccounts(accounts);
         AccountSpinnerAdapter adapter = new AccountSpinnerAdapter(getContext(), accounts);
         accountSpinner.setAdapter(adapter);
+    }
+
+    @Override
+    public void showCurrencies(List<Currency> currencies) {
+        CurrencySpinnerAdapter adapter = new CurrencySpinnerAdapter(getContext(), currencies);
+        currencySpinner.setAdapter(adapter);
     }
 
     @OnClick(R.id.btn_person)
@@ -168,3 +190,4 @@ public class PersonTransactionFragment extends BaseFragment
         dialog.show();
     }
 }
+

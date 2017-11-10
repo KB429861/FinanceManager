@@ -50,7 +50,6 @@ public class CurrenciesFragment extends BaseFragment implements CurrenciesView {
 
     @Override
     public void showCurrencies(List<Currency> currencies) {
-        currenciesPresenter.setCurrencies(currencies);
         CurrencyListAdapter adapter = new CurrencyListAdapter(getContext(), currencies);
         listView.setAdapter(adapter);
     }

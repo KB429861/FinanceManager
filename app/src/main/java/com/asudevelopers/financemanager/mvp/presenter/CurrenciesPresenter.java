@@ -31,6 +31,7 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
                         new Consumer<List<Currency>>() {
                             @Override
                             public void accept(List<Currency> currencies) {
+                                setCurrencies(currencies);
                                 getViewState().showCurrencies(currencies);
                             }
                         },
@@ -47,7 +48,7 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
         return currencies;
     }
 
-    public void setCurrencies(List<Currency> currencies) {
+    private void setCurrencies(List<Currency> currencies) {
         this.currencies = currencies;
     }
 
