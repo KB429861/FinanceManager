@@ -29,6 +29,7 @@ public class PeoplePresenter extends BasePresenter<PeopleView> {
                         new Consumer<List<Person>>() {
                             @Override
                             public void accept(List<Person> people) {
+                                setPeople(people);
                                 getViewState().showPeople(people);
                             }
                         },
@@ -40,7 +41,7 @@ public class PeoplePresenter extends BasePresenter<PeopleView> {
                         });
     }
 
-    public void setPeople(List<Person> people) {
+    private void setPeople(List<Person> people) {
         this.people = people;
     }
 

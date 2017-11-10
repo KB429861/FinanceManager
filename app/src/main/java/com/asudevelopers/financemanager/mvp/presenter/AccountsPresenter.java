@@ -29,6 +29,7 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
                         new Consumer<List<Account>>() {
                             @Override
                             public void accept(List<Account> accounts) {
+                                setAccounts(accounts);
                                 getViewState().showAccounts(accounts);
                             }
                         },
@@ -40,7 +41,7 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
                         });
     }
 
-    public void setAccounts(List<Account> accounts) {
+    private void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 

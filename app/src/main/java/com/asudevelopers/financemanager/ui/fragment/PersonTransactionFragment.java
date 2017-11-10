@@ -107,14 +107,12 @@ public class PersonTransactionFragment extends BaseFragment
 
     @Override
     public void showPeople(List<Person> people) {
-        peoplePresenter.setPeople(people);
         PersonSpinnerAdapter adapter = new PersonSpinnerAdapter(getContext(), people);
         personSpinner.setAdapter(adapter);
     }
 
     @Override
     public void showAccounts(List<Account> accounts) {
-        accountsPresenter.setAccounts(accounts);
         AccountSpinnerAdapter adapter = new AccountSpinnerAdapter(getContext(), accounts);
         accountSpinner.setAdapter(adapter);
     }
@@ -157,7 +155,6 @@ public class PersonTransactionFragment extends BaseFragment
     public void showTime(Calendar calendar) {
         DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.SHORT);
         timeButton.setText(dateFormat.format(calendar.getTime()));
-
     }
 
     @Override

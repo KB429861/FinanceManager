@@ -89,7 +89,6 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
 
     @Override
     public void showPeople(List<Person> people) {
-        peoplePresenter.setPeople(people);
         PersonListAdapter adapter = new PersonListAdapter(this, people);
         listView.setAdapter(adapter);
     }
