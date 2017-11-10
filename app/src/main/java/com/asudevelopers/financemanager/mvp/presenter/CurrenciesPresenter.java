@@ -1,9 +1,9 @@
 package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
+import com.asudevelopers.financemanager.mvp.presenter.base.ItemsPresenter;
 import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
 
 import java.util.List;
@@ -15,15 +15,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
-
-    private List<Currency> currencies;
+public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency> {
 
     public CurrenciesPresenter(AppDatabase database) {
         super(database);
     }
 
-    public void loadCurrencies() {
+    @Override
+    public void showItems() {
         database.currencyDao().selectCurrencies()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -31,7 +30,7 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
                         new Consumer<List<Currency>>() {
                             @Override
                             public void accept(List<Currency> currencies) {
-                                setCurrencies(currencies);
+                                setItems(currencies);
                                 getViewState().showCurrencies(currencies);
                             }
                         },
@@ -44,17 +43,10 @@ public class CurrenciesPresenter extends BasePresenter<CurrenciesView> {
                 );
     }
 
-    public List<Currency> getCurrencies() {
-        return currencies;
-    }
 
-    private void setCurrencies(List<Currency> currencies) {
-        this.currencies = currencies;
-    }
-
-    public int getCurrencyPosition(String charCode) {
-        for (int i = 0; i < currencies.size(); i++) {
-            if (currencies.get(i).getCharCode().equals(charCode)) {
+    public int getItemPosition(String charCode) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getCharCode().equals(charCode)) {
                 return i;
             }
         }

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.asudevelopers.financemanager.R;
+import com.asudevelopers.financemanager.mvp.view.base.BaseView;
 
 public abstract class BaseActivity extends MvpAppCompatActivity implements BaseView {
 

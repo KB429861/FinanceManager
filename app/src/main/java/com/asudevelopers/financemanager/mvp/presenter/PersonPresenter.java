@@ -2,9 +2,9 @@ package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.presenter.base.DatabasePresenter;
 import com.asudevelopers.financemanager.mvp.view.PersonView;
 
 import io.reactivex.Completable;
@@ -14,7 +14,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class PersonPresenter extends BasePresenter<PersonView> {
+public class PersonPresenter extends DatabasePresenter<PersonView> {
 
     private Person person = null;
 

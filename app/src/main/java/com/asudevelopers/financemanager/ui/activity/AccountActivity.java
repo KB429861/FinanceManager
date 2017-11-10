@@ -64,7 +64,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
         setContentView(R.layout.activity_account);
         ButterKnife.bind(this);
 
-        currenciesPresenter.loadCurrencies();
+        currenciesPresenter.showItems();
 
         Account account = (Account) getIntent().getSerializableExtra("Account");
         accountPresenter.loadAndShowAccount(account);
@@ -132,7 +132,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
     public void showAccount(Account account) {
         nameEditText.setText(account.getName());
         balanceEditText.setText(String.valueOf(account.getAmount()));
-        int position = currenciesPresenter.getCurrencyPosition(account.getCurrencyCharCode());
+        int position = currenciesPresenter.getItemPosition(account.getCurrencyCharCode());
         currencySpinner.setSelection(position);
     }
 

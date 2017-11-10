@@ -30,9 +30,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements
-        NavigationView.OnNavigationItemSelectedListener,
-        CurrenciesView {
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, CurrenciesView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

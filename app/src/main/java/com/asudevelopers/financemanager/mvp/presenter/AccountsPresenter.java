@@ -1,9 +1,9 @@
 package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.asudevelopers.financemanager.base.BasePresenter;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
+import com.asudevelopers.financemanager.mvp.presenter.base.ItemsPresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountsView;
 
 import java.util.List;
@@ -13,15 +13,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class AccountsPresenter extends BasePresenter<AccountsView> {
-
-    private List<Account> accounts;
+public class AccountsPresenter extends ItemsPresenter<AccountsView, Account> {
 
     public AccountsPresenter(AppDatabase database) {
         super(database);
     }
 
-    public void loadAccounts() {
+    @Override
+    public void showItems() {
         database.accountDao().selectAccounts()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -29,7 +28,7 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
                         new Consumer<List<Account>>() {
                             @Override
                             public void accept(List<Account> accounts) {
-                                setAccounts(accounts);
+                                setItems(accounts);
                                 getViewState().showAccounts(accounts);
                             }
                         },
@@ -39,13 +38,5 @@ public class AccountsPresenter extends BasePresenter<AccountsView> {
                                 getViewState().showError(throwable);
                             }
                         });
-    }
-
-    private void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    public Account getAccount(int position) {
-        return accounts.get(position);
     }
 }

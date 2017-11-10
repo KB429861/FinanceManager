@@ -3,6 +3,7 @@ package com.asudevelopers.financemanager.base;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
+import com.asudevelopers.financemanager.mvp.view.base.BaseView;
 
 public abstract class BaseFragment extends MvpAppCompatFragment implements BaseView {
 

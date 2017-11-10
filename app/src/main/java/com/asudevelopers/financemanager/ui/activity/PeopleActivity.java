@@ -56,13 +56,13 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        peoplePresenter.loadPeople();
+        peoplePresenter.showItems();
 
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Person person = peoplePresenter.getPerson(position);
+                        Person person = peoplePresenter.getItem(position);
                         Intent intent = new Intent(getApplicationContext(), PersonActivity.class);
                         intent.putExtra("Person", person);
                         startActivity(intent);

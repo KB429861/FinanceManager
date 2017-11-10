@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.ToggleButton;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -21,14 +23,17 @@ import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
 import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.transaction.PersonTransaction;
 import com.asudevelopers.financemanager.mvp.presenter.AccountsPresenter;
 import com.asudevelopers.financemanager.mvp.presenter.CurrenciesPresenter;
 import com.asudevelopers.financemanager.mvp.presenter.DateTimePresenter;
 import com.asudevelopers.financemanager.mvp.presenter.PeoplePresenter;
+import com.asudevelopers.financemanager.mvp.presenter.PersonTransactionPresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountsView;
 import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
 import com.asudevelopers.financemanager.mvp.view.DateTimeView;
 import com.asudevelopers.financemanager.mvp.view.PeopleView;
+import com.asudevelopers.financemanager.mvp.view.PersonTransactionView;
 import com.asudevelopers.financemanager.ui.activity.AccountActivity;
 import com.asudevelopers.financemanager.ui.activity.PersonActivity;
 import com.asudevelopers.financemanager.util.adapter.AccountSpinnerAdapter;
@@ -44,7 +49,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PersonTransactionFragment extends BaseFragment
-        implements PeopleView, AccountsView, DateTimeView, CurrenciesView {
+        implements PeopleView, AccountsView, DateTimeView, CurrenciesView, PersonTransactionView {
 
     @BindView(R.id.spn_person)
     Spinner personSpinner;
@@ -61,6 +66,15 @@ public class PersonTransactionFragment extends BaseFragment
     @BindView(R.id.btn_time)
     Button timeButton;
 
+    @BindView(R.id.btn_toggle)
+    ToggleButton toggleButton;
+
+    @BindView(R.id.et_amount)
+    EditText amountEditText;
+
+    @BindView(R.id.et_description)
+    EditText descriptionEditText;
+
     @InjectPresenter
     PeoplePresenter peoplePresenter;
 
@@ -72,6 +86,9 @@ public class PersonTransactionFragment extends BaseFragment
 
     @InjectPresenter
     CurrenciesPresenter currenciesPresenter;
+
+    @InjectPresenter
+    PersonTransactionPresenter transactionPresenter;
 
     @ProvidePresenter
     PeoplePresenter providePeoplePresenter() {
@@ -88,6 +105,11 @@ public class PersonTransactionFragment extends BaseFragment
         return new CurrenciesPresenter(AppDatabase.getInstance(getContext()));
     }
 
+    @ProvidePresenter
+    PersonTransactionPresenter provideTransactionPresenter() {
+        return new PersonTransactionPresenter(AppDatabase.getInstance(getContext()));
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -96,9 +118,9 @@ public class PersonTransactionFragment extends BaseFragment
                 R.layout.fragment_person_transaction, container, false);
         ButterKnife.bind(this, view);
 
-        peoplePresenter.loadPeople();
-        accountsPresenter.loadAccounts();
-        currenciesPresenter.loadCurrencies();
+        peoplePresenter.showItems();
+        accountsPresenter.showItems();
+        currenciesPresenter.showItems();
 
         dateTimePresenter.onCreateView();
 
@@ -121,6 +143,16 @@ public class PersonTransactionFragment extends BaseFragment
     public void showCurrencies(List<Currency> currencies) {
         CurrencySpinnerAdapter adapter = new CurrencySpinnerAdapter(getContext(), currencies);
         currencySpinner.setAdapter(adapter);
+    }
+
+    @Override
+    public void showTransaction(PersonTransaction transaction) {
+//        personSpinner.setSelection(
+//            peoplePresenter
+//        );
+        accountSpinner.setSelection(
+                accountsPresenter.getItemPosition(transaction.getAccountId())
+        );
     }
 
     @OnClick(R.id.btn_person)
@@ -187,4 +219,3 @@ public class PersonTransactionFragment extends BaseFragment
         dialog.show();
     }
 }
-
