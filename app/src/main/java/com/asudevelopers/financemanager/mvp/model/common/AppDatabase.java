@@ -37,11 +37,11 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public abstract CurrencyDao currencyDao();
+    public abstract CurrencyDao currencies();
 
-    public abstract PersonDao personDao();
+    public abstract PersonDao people();
 
-    public abstract AccountDao accountDao();
+    public abstract AccountDao accounts();
 
-    public abstract TransactionDao transactionsDao();
+    public abstract TransactionDao transactions();
 }

@@ -20,16 +20,16 @@ public class PersonPresenter extends ItemPresenter<PersonView, Person> {
 
     @Override
     protected void insertCommand(Person person) {
-        database.personDao().insertPeople(person);
+        database.people().insert(person);
     }
 
     @Override
     protected void updateCommand(Person person) {
-        database.personDao().updatePeople(person);
+        database.people().update(person);
     }
 
     @Override
-    protected void deleteCommand() {
-        database.personDao().deletePeople(item);
+    protected void deleteCommand(Person person) {
+        database.people().delete(person);
     }
 }

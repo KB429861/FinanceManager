@@ -17,20 +17,20 @@ import io.reactivex.Maybe;
 public interface CurrencyDao {
 
     @Query("select * from currencies")
-    Flowable<List<Currency>> selectCurrencies();
+    Flowable<List<Currency>> select();
 
     @Query("select * from currencies where id = :currencyId")
-    Flowable<Currency> selectCurrency(int currencyId);
+    Flowable<Currency> select(int currencyId);
 
     @Query("select * from currencies where char_code = :charCode")
-    Maybe<Currency> selectCurrency(String charCode);
+    Maybe<Currency> select(String charCode);
 
     @Insert
-    void insertCurrencies(Currency... currencies);
+    void insert(Currency... currencies);
 
     @Update
-    void updateCurrencies(Currency... currencies);
+    void update(Currency... currencies);
 
     @Delete
-    void deleteCurrencies(Currency... currencies);
+    void delete(Currency... currencies);
 }

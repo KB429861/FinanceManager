@@ -21,7 +21,7 @@ public class PeoplePresenter extends ItemsPresenter<PeopleView, Person> {
 
     @Override
     protected void showItems() {
-        database.personDao().selectPeople()
+        database.people().select()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

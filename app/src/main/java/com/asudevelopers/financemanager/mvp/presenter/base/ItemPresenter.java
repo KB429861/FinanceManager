@@ -97,7 +97,7 @@ public abstract class ItemPresenter<V extends BaseView, E extends BaseEntity>
                 new Action() {
                     @Override
                     public void run() {
-                        deleteCommand();
+                        deleteCommand(item);
                     }
                 })
                 .subscribeOn(Schedulers.newThread())
@@ -137,7 +137,7 @@ public abstract class ItemPresenter<V extends BaseView, E extends BaseEntity>
         getViewState().showError(throwable);
     }
 
-    protected abstract void deleteCommand();
+    protected abstract void deleteCommand(E item);
 
     protected void onDeleteCompleted() {
         getViewState().showMessage(R.string.msg_deleted);

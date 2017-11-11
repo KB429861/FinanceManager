@@ -20,16 +20,16 @@ public class AccountPresenter extends ItemPresenter<AccountView, Account> {
 
     @Override
     protected void insertCommand(Account account) {
-        database.accountDao().insertAccounts(account);
+        database.accounts().insert(account);
     }
 
     @Override
     protected void updateCommand(Account account) {
-        database.accountDao().updateAccounts(account);
+        database.accounts().update(account);
     }
 
     @Override
-    protected void deleteCommand() {
-        database.accountDao().deleteAccounts(item);
+    protected void deleteCommand(Account account) {
+        database.accounts().delete(account);
     }
 }

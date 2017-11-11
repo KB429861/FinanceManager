@@ -23,7 +23,7 @@ public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency
 
     @Override
     protected void showItems() {
-        database.currencyDao().selectCurrencies()
+        database.currencies().select()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -58,7 +58,7 @@ public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency
                 new Action() {
                     @Override
                     public void run() {
-                        database.currencyDao().insertCurrencies(currency);
+                        database.currencies().insert(currency);
                     }
                 })
                 .subscribeOn(Schedulers.newThread())
@@ -79,7 +79,7 @@ public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency
                 new Action() {
                     @Override
                     public void run() {
-                        database.currencyDao().updateCurrencies(currency);
+                        database.currencies().update(currency);
                     }
                 })
                 .subscribeOn(Schedulers.newThread())
@@ -99,7 +99,7 @@ public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency
         for (int i = 0; i < charCodes.length; i++) {
             final String charCode = charCodes[i];
             final String name = names[i];
-            database.currencyDao().selectCurrency(charCode)
+            database.currencies().select(charCode)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSuccess(

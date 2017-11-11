@@ -16,17 +16,17 @@ import io.reactivex.Flowable;
 public interface AccountDao {
 
     @Query("select * from accounts")
-    Flowable<List<Account>> selectAccounts();
+    Flowable<List<Account>> select();
 
     @Query("select * from accounts where id = :accountId")
-    Flowable<Account> selectAccount(int accountId);
+    Flowable<Account> select(int accountId);
 
     @Insert
-    void insertAccounts(Account... accounts);
+    void insert(Account... accounts);
 
     @Update
-    void updateAccounts(Account... accounts);
+    void update(Account... accounts);
 
     @Delete
-    void deleteAccounts(Account... accounts);
+    void delete(Account... accounts);
 }

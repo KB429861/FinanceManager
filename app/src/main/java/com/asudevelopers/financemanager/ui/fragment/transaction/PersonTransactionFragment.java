@@ -116,7 +116,7 @@ public class PersonTransactionFragment extends TransactionFragment
             transaction.setCurrencyCharCode(currency.getCharCode());
             transaction.setAmount(amount);
             transaction.setDescription(description);
-            transactionPresenter.saveTransaction(transaction);
+            transactionPresenter.saveItem(transaction);
         }
     }
 }

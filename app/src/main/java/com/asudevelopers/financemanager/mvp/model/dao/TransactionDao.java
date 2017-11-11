@@ -5,20 +5,27 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Update;
 
+import com.asudevelopers.financemanager.mvp.model.entity.transaction.BorrowTransaction;
 import com.asudevelopers.financemanager.mvp.model.entity.transaction.LendTransaction;
 
 @Dao
 public interface TransactionDao {
 
-//    @Query("select * from person_transactions where person_id = :personId")
-//    Flowable<List<PersonTransaction>> selectPersonTransactions(int personId);
+    @Insert
+    void insert(LendTransaction... transactions);
 
     @Insert
-    void insertLendTransactions(LendTransaction... transactions);
+    void insert(BorrowTransaction... transactions);
 
     @Update
-    void updateLendTransactions(LendTransaction... transactions);
+    void update(LendTransaction... transactions);
+
+    @Update
+    void update(BorrowTransaction... transactions);
 
     @Delete
-    void deleteLendTransactions(LendTransaction... transactions);
+    void delete(LendTransaction... transactions);
+
+    @Delete
+    void delete(BorrowTransaction... transactions);
 }
