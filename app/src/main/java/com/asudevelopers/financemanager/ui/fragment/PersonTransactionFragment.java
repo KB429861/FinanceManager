@@ -36,9 +36,9 @@ import com.asudevelopers.financemanager.mvp.view.PeopleView;
 import com.asudevelopers.financemanager.mvp.view.PersonTransactionView;
 import com.asudevelopers.financemanager.ui.activity.AccountActivity;
 import com.asudevelopers.financemanager.ui.activity.PersonActivity;
-import com.asudevelopers.financemanager.util.adapter.AccountSpinnerAdapter;
-import com.asudevelopers.financemanager.util.adapter.CurrencySpinnerAdapter;
-import com.asudevelopers.financemanager.util.adapter.PersonSpinnerAdapter;
+import com.asudevelopers.financemanager.util.adapter.spinner.AccountSpinnerAdapter;
+import com.asudevelopers.financemanager.util.adapter.spinner.CurrencySpinnerAdapter;
+import com.asudevelopers.financemanager.util.adapter.spinner.PersonSpinnerAdapter;
 import com.asudevelopers.financemanager.util.validation.Validation;
 
 import java.text.DateFormat;
