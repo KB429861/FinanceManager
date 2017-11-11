@@ -20,7 +20,7 @@ public class AccountsPresenter extends ItemsPresenter<AccountsView, Account> {
     }
 
     @Override
-    public void showItems() {
+    protected void showItems() {
         database.accountDao().selectAccounts()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

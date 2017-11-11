@@ -118,13 +118,6 @@ public class PersonTransactionFragment extends BaseFragment
         View view = inflater.inflate(
                 R.layout.fragment_person_transaction, container, false);
         ButterKnife.bind(this, view);
-
-        peoplePresenter.showItems();
-        accountsPresenter.showItems();
-        currenciesPresenter.showItems();
-
-        dateTimePresenter.onCreateView();
-
         return view;
     }
 

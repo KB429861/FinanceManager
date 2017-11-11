@@ -11,7 +11,7 @@ public class DateTimePresenter extends MvpPresenter<DateTimeView> {
 
     private Calendar calendar;
 
-    public void onCreateView() {
+    public DateTimePresenter() {
         calendar = Calendar.getInstance();
         getViewState().showDate(calendar);
         getViewState().showTime(calendar);

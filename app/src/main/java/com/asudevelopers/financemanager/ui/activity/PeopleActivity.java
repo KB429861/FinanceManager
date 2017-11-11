@@ -56,8 +56,6 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        peoplePresenter.showItems();
-
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override

@@ -64,8 +64,6 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
         setContentView(R.layout.activity_account);
         ButterKnife.bind(this);
 
-        currenciesPresenter.showItems();
-
         Account account = (Account) getIntent().getSerializableExtra("Account");
         accountPresenter.loadAndShowAccount(account);
 

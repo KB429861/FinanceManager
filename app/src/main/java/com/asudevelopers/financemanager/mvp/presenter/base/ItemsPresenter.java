@@ -13,9 +13,10 @@ public abstract class ItemsPresenter<V extends BaseView, E extends BaseEntity>
 
     public ItemsPresenter(AppDatabase database) {
         super(database);
+        showItems();
     }
 
-    public abstract void showItems();
+    protected abstract void showItems();
 
     protected void setItems(List<E> items) {
         this.items = items;

@@ -22,7 +22,7 @@ public class CurrenciesPresenter extends ItemsPresenter<CurrenciesView, Currency
     }
 
     @Override
-    public void showItems() {
+    protected void showItems() {
         database.currencyDao().selectCurrencies()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
