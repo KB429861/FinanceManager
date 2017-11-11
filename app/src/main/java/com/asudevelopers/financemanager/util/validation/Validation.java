@@ -12,45 +12,45 @@ public abstract class Validation {
     private static final String PHONE_REGEX = "\\d{3}-\\d{7}";
     private static final String AMOUNT_REGEX = "\\d+\\.\\d+";
 
-    public static boolean isPhoneNumber(EditText editText, String message) {
-        return isValid(editText, PHONE_REGEX, message, false);
+    public static boolean isPhoneNumber(EditText editText, String error) {
+        return isValid(editText, PHONE_REGEX, error, false);
     }
 
-    public static boolean isAmount(EditText editText, String message) {
-        return isValid(editText, AMOUNT_REGEX, message, true);
+    public static boolean isAmount(EditText editText, String error) {
+        return isValid(editText, AMOUNT_REGEX, error, true);
     }
 
-    private static boolean isValid(EditText editText, String regex, String message,
-                                   boolean required) {
+    private static boolean isValid(
+            EditText editText, String regex, String error, boolean required) {
         editText.setError(null);
         String text = editText.getText().toString().trim();
-        if (required && !hasText(editText, message)) {
+        if (required && !hasText(editText, error)) {
             return false;
         }
         if (required && !Pattern.matches(regex, text)) {
-            editText.setError(message);
+            editText.setError(error);
             return false;
         }
         return true;
     }
 
-    public static boolean isSelected(Spinner spinner, String message) {
+    public static boolean isSelected(Spinner spinner, String error) {
         if (spinner.getSelectedItem() == null) {
             View selectedView = spinner.getSelectedView();
             if (selectedView != null && selectedView instanceof TextView) {
                 TextView textView = (TextView) selectedView;
-                textView.setError(message);
+                textView.setError(error);
             }
             return false;
         }
         return true;
     }
 
-    public static boolean hasText(EditText editText, String message) {
+    public static boolean hasText(EditText editText, String error) {
         editText.setError(null);
         String text = editText.getText().toString().trim();
         if (text.length() == 0) {
-            editText.setError(message);
+            editText.setError(error);
             return false;
         }
         return true;

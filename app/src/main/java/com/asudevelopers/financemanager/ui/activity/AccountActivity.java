@@ -44,7 +44,6 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
 
     @InjectPresenter
     AccountPresenter accountPresenter;
-
     @InjectPresenter
     CurrenciesPresenter currenciesPresenter;
 
@@ -65,7 +64,7 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
         ButterKnife.bind(this);
 
         Account account = (Account) getIntent().getSerializableExtra("Account");
-        accountPresenter.loadAndShowAccount(account);
+        accountPresenter.setItem(account);
 
         toolbar.setTitle(R.string.account);
         setSupportActionBar(toolbar);
@@ -99,7 +98,8 @@ public class AccountActivity extends BaseActivity implements AccountView, Curren
             String name = nameEditText.getText().toString();
             double amount = Double.valueOf(balanceEditText.getText().toString());
             Currency currency = (Currency) currencySpinner.getSelectedItem();
-            accountPresenter.saveAccountInfo(name, amount, currency.getCharCode());
+            Account account = new Account(name, amount, currency.getCharCode());
+            accountPresenter.saveItem(account);
             onBackPressed();
         }
     }

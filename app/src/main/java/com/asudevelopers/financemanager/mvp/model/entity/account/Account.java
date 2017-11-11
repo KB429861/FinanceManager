@@ -3,6 +3,7 @@ package com.asudevelopers.financemanager.mvp.model.entity.account;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 
 import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
@@ -25,6 +26,16 @@ public class Account extends BaseEntity {
 
     @ColumnInfo(name = "currency_char_code")
     private String currencyCharCode;
+
+    public Account() {
+    }
+
+    @Ignore
+    public Account(String name, double amount, String currencyCharCode) {
+        this.name = name;
+        this.amount = amount;
+        this.currencyCharCode = currencyCharCode;
+    }
 
     public String getName() {
         return name;

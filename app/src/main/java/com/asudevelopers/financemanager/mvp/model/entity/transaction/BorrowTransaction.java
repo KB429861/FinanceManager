@@ -13,15 +13,21 @@ import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
                 @ForeignKey(
                         entity = Account.class,
                         parentColumns = "id",
-                        childColumns = "account_id"),
+                        childColumns = "account_id",
+                        onUpdate = ForeignKey.CASCADE,
+                        onDelete = ForeignKey.CASCADE),
                 @ForeignKey(
                         entity = Currency.class,
                         parentColumns = "char_code",
-                        childColumns = "currency_char_code"),
+                        childColumns = "currency_char_code",
+                        onUpdate = ForeignKey.CASCADE,
+                        onDelete = ForeignKey.CASCADE),
                 @ForeignKey(
                         entity = Person.class,
                         parentColumns = "id",
-                        childColumns = "person_id")},
+                        childColumns = "person_id",
+                        onUpdate = ForeignKey.CASCADE,
+                        onDelete = ForeignKey.CASCADE)},
         indices = {
                 @Index("account_id"),
                 @Index("currency_char_code"),

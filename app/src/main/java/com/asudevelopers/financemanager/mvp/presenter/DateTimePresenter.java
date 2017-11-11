@@ -5,6 +5,7 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.asudevelopers.financemanager.mvp.view.DateTimeView;
 
 import java.util.Calendar;
+import java.util.Date;
 
 @InjectViewState
 public class DateTimePresenter extends MvpPresenter<DateTimeView> {
@@ -26,6 +27,10 @@ public class DateTimePresenter extends MvpPresenter<DateTimeView> {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         getViewState().showTime(calendar);
+    }
+
+    public Date getDateTime() {
+        return calendar.getTime();
     }
 
     public void showDatePicker() {

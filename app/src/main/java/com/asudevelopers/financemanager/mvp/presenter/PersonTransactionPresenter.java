@@ -17,4 +17,8 @@ public class PersonTransactionPresenter extends DatabasePresenter<PersonTransact
 
     public void setPersonTransaction(PersonTransaction transaction) {
     }
+
+    public void saveTransaction(PersonTransaction transaction) {
+
+    }
 }

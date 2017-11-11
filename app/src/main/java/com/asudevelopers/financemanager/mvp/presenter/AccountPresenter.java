@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
 import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
-import com.asudevelopers.financemanager.mvp.presenter.base.DatabasePresenter;
+import com.asudevelopers.financemanager.mvp.presenter.base.ItemPresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountView;
 
 import io.reactivex.Completable;
@@ -14,32 +14,24 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class AccountPresenter extends DatabasePresenter<AccountView> {
-
-    private Account account = null;
+public class AccountPresenter extends ItemPresenter<AccountView, Account> {
 
     public AccountPresenter(AppDatabase database) {
         super(database);
     }
 
-    public void saveAccountInfo(final String name, final double amount, final String charCode) {
+    @Override
+    protected void showItem(Account account) {
+        getViewState().showAccount(account);
+    }
+
+    @Override
+    protected void insertItem(final Account account) {
         Completable.fromAction(
                 new Action() {
                     @Override
                     public void run() {
-                        boolean isUpdate = true;
-                        if (account == null) {
-                            account = new Account();
-                            isUpdate = false;
-                        }
-                        account.setName(name);
-                        account.setAmount(amount);
-                        account.setCurrencyCharCode(charCode);
-                        if (isUpdate) {
-                            database.accountDao().updateAccounts(account);
-                        } else {
-                            database.accountDao().insertAccounts(account);
-                        }
+                        database.accountDao().insertAccounts(account);
                     }
                 })
                 .subscribeOn(Schedulers.newThread())
@@ -59,10 +51,55 @@ public class AccountPresenter extends DatabasePresenter<AccountView> {
                         });
     }
 
-    public void loadAndShowAccount(Account account) {
-        this.account = account;
-        if (account != null) {
-            getViewState().showAccount(account);
-        }
+    @Override
+    protected void updateItem(final Account account) {
+        Completable.fromAction(
+                new Action() {
+                    @Override
+                    public void run() {
+                        database.accountDao().deleteAccounts(account);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() {
+                                getViewState().showMessage(R.string.msg_saved);
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        });
+    }
+
+    @Override
+    public void deleteItem() {
+        Completable.fromAction(
+                new Action() {
+                    @Override
+                    public void run() {
+                        database.accountDao().deleteAccounts(item);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Action() {
+                            @Override
+                            public void run() {
+                                getViewState().showMessage(R.string.msg_deleted);
+                            }
+                        },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                getViewState().showError(throwable);
+                            }
+                        });
     }
 }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6bf418ea0b197f7bb5fb0807cc6bf480",
+    "identityHash": "418389d17cb5567f8e35912963d64a81",
     "entities": [
       {
         "tableName": "currencies",
@@ -259,7 +259,7 @@
       },
       {
         "tableName": "borrow_transactions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_char_code` TEXT, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`currency_char_code`) REFERENCES `currencies`(`char_code`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `person_id` INTEGER NOT NULL, `date` INTEGER, `amount` REAL NOT NULL, `currency_char_code` TEXT, `account_id` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `accounts`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`currency_char_code`) REFERENCES `currencies`(`char_code`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`person_id`) REFERENCES `people`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -339,8 +339,8 @@
         "foreignKeys": [
           {
             "table": "accounts",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
               "account_id"
             ],
@@ -350,8 +350,8 @@
           },
           {
             "table": "currencies",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
               "currency_char_code"
             ],
@@ -361,8 +361,8 @@
           },
           {
             "table": "people",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
             "columns": [
               "person_id"
             ],
@@ -375,7 +375,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"6bf418ea0b197f7bb5fb0807cc6bf480\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"418389d17cb5567f8e35912963d64a81\")"
     ]
   }
 }

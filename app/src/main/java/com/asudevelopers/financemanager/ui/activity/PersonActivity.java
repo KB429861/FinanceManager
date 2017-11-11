@@ -55,7 +55,7 @@ public class PersonActivity extends BaseActivity implements PersonView {
         ButterKnife.bind(this);
 
         Person person = (Person) getIntent().getSerializableExtra("Person");
-        personPresenter.loadAndShowPerson(person);
+        personPresenter.setItem(person);
 
         toolbar.setTitle(R.string.person);
         setSupportActionBar(toolbar);
@@ -88,7 +88,8 @@ public class PersonActivity extends BaseActivity implements PersonView {
         if (isValid()) {
             String name = nameEditText.getText().toString();
             String phone = phoneEditText.getText().toString();
-            personPresenter.savePersonInfo(name, phone);
+            Person person = new Person(name, phone);
+            personPresenter.saveItem(person);
             onBackPressed();
         }
     }
@@ -114,7 +115,7 @@ public class PersonActivity extends BaseActivity implements PersonView {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        personPresenter.deletePerson();
+                        personPresenter.deleteItem();
                         onBackPressed();
                     }
                 })
@@ -126,10 +127,10 @@ public class PersonActivity extends BaseActivity implements PersonView {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_person, menu);
         MenuItem deleteItem = menu.findItem(R.id.action_delete);
-        if (personPresenter.isEditMode()) {
-            deleteItem.setVisible(true);
-        } else {
+        if (personPresenter.isItemNull()) {
             deleteItem.setVisible(false);
+        } else {
+            deleteItem.setVisible(true);
         }
         return super.onCreateOptionsMenu(menu);
     }
