@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CurrencySpinnerAdapter extends ArrayAdapter<Currency> {
 
-    public CurrencySpinnerAdapter(@NonNull Context context, @NonNull List<Currency> currencies) {
+    public CurrencySpinnerAdapter(Context context, List<Currency> currencies) {
         super(context, R.layout.item_currency_spinner, currencies);
     }
 

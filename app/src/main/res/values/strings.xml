@@ -160,5 +160,7 @@
     <string name="description">Description</string>
     <string name="take">Take</string>
     <string name="give">Give</string>
+    <string name="msg_null_person">Null person</string>
+    <string name="msg_null_account">Null account</string>
 
 </resources>

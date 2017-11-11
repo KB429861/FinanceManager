@@ -20,6 +20,8 @@ public class TransactionActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    private PersonTransactionFragment currentFragment = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class TransactionActivity extends BaseActivity {
         }
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, new PersonTransactionFragment());
+        currentFragment = new PersonTransactionFragment();
+        transaction.replace(R.id.content_frame, currentFragment);
         transaction.commit();
     }
 
@@ -50,7 +53,7 @@ public class TransactionActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save) {
-//            save();
+            currentFragment.save();
             return true;
         }
         return super.onOptionsItemSelected(item);

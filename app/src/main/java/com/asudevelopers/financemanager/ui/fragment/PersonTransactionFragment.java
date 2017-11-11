@@ -39,6 +39,7 @@ import com.asudevelopers.financemanager.ui.activity.PersonActivity;
 import com.asudevelopers.financemanager.util.adapter.AccountSpinnerAdapter;
 import com.asudevelopers.financemanager.util.adapter.CurrencySpinnerAdapter;
 import com.asudevelopers.financemanager.util.adapter.PersonSpinnerAdapter;
+import com.asudevelopers.financemanager.util.validation.Validation;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -147,22 +148,20 @@ public class PersonTransactionFragment extends BaseFragment
 
     @Override
     public void showTransaction(PersonTransaction transaction) {
-//        personSpinner.setSelection(
-//            peoplePresenter
-//        );
+        personSpinner.setSelection(
+                peoplePresenter.getItemPosition(transaction.getPersonId()));
         accountSpinner.setSelection(
-                accountsPresenter.getItemPosition(transaction.getAccountId())
-        );
+                accountsPresenter.getItemPosition(transaction.getAccountId()));
     }
 
     @OnClick(R.id.btn_person)
-    public void OnCreatePersonClick(View view) {
+    public void createPerson(View view) {
         Intent intent = new Intent(getContext(), PersonActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_account)
-    public void OnCreateAccountClick(View view) {
+    public void createAccount(View view) {
         Intent intent = new Intent(getContext(), AccountActivity.class);
         startActivity(intent);
     }
@@ -217,5 +216,18 @@ public class PersonTransactionFragment extends BaseFragment
                 calendar.get(Calendar.MINUTE),
                 true);
         dialog.show();
+    }
+
+    public void save() {
+        if (isValid()) {
+
+        }
+    }
+
+    private boolean isValid() {
+        return Validation.isSelected(personSpinner, getString(R.string.msg_null_person)) &&
+                Validation.isSelected(accountSpinner, getString(R.string.msg_null_account)) &&
+                Validation.isSelected(currencySpinner, getString(R.string.msg_null_currency)) &&
+                Validation.isAmount(amountEditText, getString(R.string.msg_invalid_amount));
     }
 }

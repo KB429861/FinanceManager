@@ -20,7 +20,8 @@ public abstract class Validation {
         return isValid(editText, AMOUNT_REGEX, message, true);
     }
 
-    private static boolean isValid(EditText editText, String regex, String message, boolean required) {
+    private static boolean isValid(EditText editText, String regex, String message,
+                                   boolean required) {
         editText.setError(null);
         String text = editText.getText().toString().trim();
         if (required && !hasText(editText, message)) {
