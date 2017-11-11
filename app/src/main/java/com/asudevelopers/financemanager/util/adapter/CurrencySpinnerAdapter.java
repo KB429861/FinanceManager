@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.util.adapter.spinner;
+package com.asudevelopers.financemanager.util.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 
 import java.util.List;
 
-public class CurrencySpinnerAdapter extends SpinnerAdapter<Currency> {
+public class CurrencySpinnerAdapter extends CustomAdapter<Currency> {
 
     private TextView nameTextView;
     private TextView charCodeTextView;

@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.util.adapter.spinner;
+package com.asudevelopers.financemanager.util.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
 
 import java.util.List;
 
-public class AccountSpinnerAdapter extends SpinnerAdapter<Account> {
+public class AccountSpinnerAdapter extends CustomAdapter<Account> {
 
     private TextView nameTextView;
 

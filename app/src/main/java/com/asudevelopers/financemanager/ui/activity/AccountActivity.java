@@ -19,7 +19,7 @@ import com.asudevelopers.financemanager.mvp.presenter.AccountPresenter;
 import com.asudevelopers.financemanager.mvp.presenter.CurrenciesPresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountView;
 import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
-import com.asudevelopers.financemanager.util.adapter.spinner.CurrencySpinnerAdapter;
+import com.asudevelopers.financemanager.util.adapter.CurrencySpinnerAdapter;
 import com.asudevelopers.financemanager.util.validation.TextValidator;
 import com.asudevelopers.financemanager.util.validation.Validation;
 

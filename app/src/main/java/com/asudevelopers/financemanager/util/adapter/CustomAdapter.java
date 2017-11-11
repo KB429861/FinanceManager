@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.util.adapter.spinner;
+package com.asudevelopers.financemanager.util.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,18 +12,26 @@ import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
 
 import java.util.List;
 
-public abstract class SpinnerAdapter<E extends BaseEntity> extends ArrayAdapter<E> {
+public abstract class CustomAdapter<E extends BaseEntity> extends ArrayAdapter<E> {
 
     private int simpleResource;
     private int dropdownResource;
 
-    SpinnerAdapter(@NonNull Context context,
-                   int simpleResource,
-                   int dropdownResource,
-                   @NonNull List<E> objects) {
+    CustomAdapter(@NonNull Context context,
+                  int simpleResource,
+                  int dropdownResource,
+                  @NonNull List<E> objects) {
         super(context, simpleResource, objects);
         this.simpleResource = simpleResource;
         this.dropdownResource = dropdownResource;
+    }
+
+    CustomAdapter(@NonNull Context context,
+                  int resource,
+                  @NonNull List<E> objects) {
+        super(context, resource, objects);
+        this.simpleResource = resource;
+        this.dropdownResource = resource;
     }
 
     protected abstract void initView(View layout);
