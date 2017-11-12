@@ -3,6 +3,9 @@ package com.asudevelopers.financemanager.ui.fragment.transaction;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ import com.asudevelopers.financemanager.mvp.view.DateTimeView;
 import com.asudevelopers.financemanager.ui.activity.AccountActivity;
 import com.asudevelopers.financemanager.util.adapter.AccountSpinnerAdapter;
 import com.asudevelopers.financemanager.util.adapter.CurrencySpinnerAdapter;
+import com.asudevelopers.financemanager.util.validation.TextValidator;
 import com.asudevelopers.financemanager.util.validation.Validation;
 
 import java.text.DateFormat;
@@ -57,8 +61,10 @@ public abstract class TransactionFragment extends BaseFragment
 
     @InjectPresenter
     AccountsPresenter accountsPresenter;
+
     @InjectPresenter
     DateTimePresenter dateTimePresenter;
+
     @InjectPresenter
     CurrenciesPresenter currenciesPresenter;
 
@@ -70,6 +76,17 @@ public abstract class TransactionFragment extends BaseFragment
     @ProvidePresenter
     CurrenciesPresenter provideCurrenciesPresenter() {
         return new CurrenciesPresenter(AppDatabase.getInstance(getContext()));
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        amountEditText.addTextChangedListener(new TextValidator(amountEditText) {
+            @Override
+            public void validate(EditText editText) {
+                Validation.isAmount(editText, getString(R.string.msg_invalid_amount));
+            }
+        });
     }
 
     @Override

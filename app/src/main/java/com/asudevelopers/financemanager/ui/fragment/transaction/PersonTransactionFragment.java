@@ -117,6 +117,7 @@ public class PersonTransactionFragment extends TransactionFragment
             transaction.setAmount(amount);
             transaction.setDescription(description);
             transactionPresenter.saveItem(transaction);
+            getActivity().onBackPressed();
         }
     }
 }
