@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.mvp.model.entity.person;
+package com.asudevelopers.financemanager.mvp.model.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;

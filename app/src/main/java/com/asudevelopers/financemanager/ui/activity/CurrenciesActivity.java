@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.base.BaseActivity;
 import com.asudevelopers.financemanager.ui.fragment.CurrenciesFragment;
 import com.asudevelopers.financemanager.ui.fragment.CurrencyFragment;
 import com.asudevelopers.financemanager.util.adapter.CurrenciesPagerAdapter;

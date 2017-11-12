@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.Person;
 
 import java.util.List;
 

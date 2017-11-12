@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
+import com.asudevelopers.financemanager.mvp.model.entity.Currency;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.asudevelopers.financemanager.mvp.view;
 
-import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.view.base.BaseView;
 
 public interface PersonView extends BaseView {

@@ -2,7 +2,7 @@ package com.asudevelopers.financemanager.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
-import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
+import com.asudevelopers.financemanager.mvp.model.entity.Currency;
 import com.asudevelopers.financemanager.mvp.presenter.base.ItemsPresenter;
 import com.asudevelopers.financemanager.mvp.view.CurrenciesView;
 

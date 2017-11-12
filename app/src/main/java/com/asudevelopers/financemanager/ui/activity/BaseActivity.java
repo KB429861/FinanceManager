@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.base;
+package com.asudevelopers.financemanager.ui.activity;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;

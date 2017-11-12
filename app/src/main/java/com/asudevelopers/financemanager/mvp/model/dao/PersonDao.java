@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.Person;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.mvp.model.entity.currency;
+package com.asudevelopers.financemanager.mvp.model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

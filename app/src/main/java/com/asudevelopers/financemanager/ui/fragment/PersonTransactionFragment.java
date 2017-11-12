@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.ui.fragment.transaction;
+package com.asudevelopers.financemanager.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.asudevelopers.financemanager.R;
 import com.asudevelopers.financemanager.mvp.model.common.AppDatabase;
-import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
-import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
-import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.Account;
+import com.asudevelopers.financemanager.mvp.model.entity.Currency;
+import com.asudevelopers.financemanager.mvp.model.entity.Person;
 import com.asudevelopers.financemanager.mvp.model.entity.transaction.BorrowTransaction;
 import com.asudevelopers.financemanager.mvp.model.entity.transaction.LendTransaction;
 import com.asudevelopers.financemanager.mvp.model.entity.transaction.PersonTransaction;

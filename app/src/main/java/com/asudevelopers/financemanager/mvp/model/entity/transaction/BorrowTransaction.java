@@ -4,9 +4,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 
-import com.asudevelopers.financemanager.mvp.model.entity.account.Account;
-import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
-import com.asudevelopers.financemanager.mvp.model.entity.person.Person;
+import com.asudevelopers.financemanager.mvp.model.entity.Account;
+import com.asudevelopers.financemanager.mvp.model.entity.Currency;
+import com.asudevelopers.financemanager.mvp.model.entity.Person;
 
 @Entity(tableName = "borrow_transactions",
         foreignKeys = {

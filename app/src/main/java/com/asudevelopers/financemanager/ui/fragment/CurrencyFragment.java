@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.base.BaseFragment;
 
 import butterknife.ButterKnife;
 

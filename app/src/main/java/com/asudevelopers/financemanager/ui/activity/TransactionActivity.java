@@ -9,8 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.asudevelopers.financemanager.R;
-import com.asudevelopers.financemanager.base.BaseActivity;
-import com.asudevelopers.financemanager.ui.fragment.transaction.PersonTransactionFragment;
+import com.asudevelopers.financemanager.ui.fragment.PersonTransactionFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

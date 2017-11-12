@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.base;
+package com.asudevelopers.financemanager.ui.fragment;
 
 import android.widget.Toast;
 

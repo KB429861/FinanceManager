@@ -119,31 +119,31 @@ public abstract class ItemPresenter<V extends BaseView, E extends BaseEntity>
 
     protected abstract void insertCommand(E item);
 
-    protected void onInsertCompleted() {
+    private void onInsertCompleted() {
         getViewState().showMessage(R.string.msg_saved);
     }
 
-    protected void onInsertError(Throwable throwable) {
+    private void onInsertError(Throwable throwable) {
         getViewState().showError(throwable);
     }
 
     protected abstract void updateCommand(E item);
 
-    protected void onUpdateCompleted() {
+    private void onUpdateCompleted() {
         getViewState().showMessage(R.string.msg_saved);
     }
 
-    protected void onUpdateError(Throwable throwable) {
+    private void onUpdateError(Throwable throwable) {
         getViewState().showError(throwable);
     }
 
     protected abstract void deleteCommand(E item);
 
-    protected void onDeleteCompleted() {
+    private void onDeleteCompleted() {
         getViewState().showMessage(R.string.msg_deleted);
     }
 
-    protected void onDeleteError(Throwable throwable) {
+    private void onDeleteError(Throwable throwable) {
         getViewState().showError(throwable);
     }
 }

@@ -1,4 +1,4 @@
-package com.asudevelopers.financemanager.mvp.model.entity.account;
+package com.asudevelopers.financemanager.mvp.model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -7,7 +7,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 
 import com.asudevelopers.financemanager.mvp.model.entity.base.BaseEntity;
-import com.asudevelopers.financemanager.mvp.model.entity.currency.Currency;
 
 @Entity(tableName = "accounts",
         foreignKeys = {

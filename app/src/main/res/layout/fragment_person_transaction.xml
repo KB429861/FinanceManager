@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
         android:orientation="vertical"
-        tools:context=".ui.fragment.transaction.PersonTransactionFragment">
+        tools:context=".ui.fragment.PersonTransactionFragment">
 
         <TextView
             style="@style/Label"
