@@ -11,6 +11,9 @@ public class Person extends BaseEntity {
     private String name;
     private String phone;
 
+    @Ignore
+    private double amount;
+
     public Person() {
     }
 
@@ -34,5 +37,13 @@ public class Person extends BaseEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

@@ -15,8 +15,8 @@ public class CurrencySpinnerAdapter extends CustomAdapter<Currency> {
     private TextView nameTextView;
     private TextView charCodeTextView;
 
-    public CurrencySpinnerAdapter(@NonNull Context context, @NonNull List<Currency> objects) {
-        super(context, R.layout.item_currency_spinner, R.layout.item_currency_spinner_dropdown, objects);
+    public CurrencySpinnerAdapter(@NonNull Context context, @NonNull List<Currency> currencies) {
+        super(context, R.layout.item_currency_spinner, R.layout.item_currency_spinner_dropdown, currencies);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class CurrencySpinnerAdapter extends CustomAdapter<Currency> {
     }
 
     @Override
-    protected void showItem(Currency item) {
-        nameTextView.setText(item.getName());
-        charCodeTextView.setText(item.getCharCode());
+    protected void showItem(Currency currency) {
+        nameTextView.setText(currency.getName());
+        charCodeTextView.setText(currency.getCharCode());
     }
 }

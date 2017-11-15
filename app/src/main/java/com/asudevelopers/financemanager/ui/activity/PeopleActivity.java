@@ -6,8 +6,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -56,14 +54,11 @@ public class PeopleActivity extends BaseActivity implements PeopleView {
         }
 
         listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Person person = peoplePresenter.getItem(position);
-                        Intent intent = new Intent(getApplicationContext(), PersonActivity.class);
-                        intent.putExtra("Person", person);
-                        startActivity(intent);
-                    }
+                (parent, view, position, id) -> {
+                    Person person = peoplePresenter.getItem(position);
+                    Intent intent = new Intent(getApplicationContext(), PersonActivity.class);
+                    intent.putExtra("Person", person);
+                    startActivity(intent);
                 });
     }
 

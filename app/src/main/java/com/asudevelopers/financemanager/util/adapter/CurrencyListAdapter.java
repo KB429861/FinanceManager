@@ -28,9 +28,9 @@ public class CurrencyListAdapter extends CustomAdapter<Currency> {
     }
 
     @Override
-    protected void showItem(Currency item) {
-        nameTextView.setText(item.getName());
-        charCodeTextView.setText(item.getCharCode());
-        valueTextView.setText(String.valueOf(item.getValue()));
+    protected void showItem(Currency currency) {
+        nameTextView.setText(currency.getName());
+        charCodeTextView.setText(currency.getCharCode());
+        valueTextView.setText(String.valueOf(currency.getValue()));
     }
 }

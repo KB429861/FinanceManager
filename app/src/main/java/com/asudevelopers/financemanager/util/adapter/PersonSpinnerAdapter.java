@@ -14,8 +14,8 @@ public class PersonSpinnerAdapter extends CustomAdapter<Person> {
 
     private TextView nameTextView;
 
-    public PersonSpinnerAdapter(@NonNull Context context, @NonNull List<Person> objects) {
-        super(context, R.layout.item_person_spinner, R.layout.item_person_spinner_dropdown, objects);
+    public PersonSpinnerAdapter(@NonNull Context context, @NonNull List<Person> people) {
+        super(context, R.layout.item_person_spinner, R.layout.item_person_spinner_dropdown, people);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class PersonSpinnerAdapter extends CustomAdapter<Person> {
     }
 
     @Override
-    protected void showItem(Person item) {
-        nameTextView.setText(item.getName());
+    protected void showItem(Person person) {
+        nameTextView.setText(person.getName());
     }
 }

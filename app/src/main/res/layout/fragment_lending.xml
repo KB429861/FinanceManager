@@ -13,4 +13,10 @@
         android:layout_height="wrap_content"
         android:text="@string/create" />
 
+    <ListView
+        android:id="@+id/lv_people"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_person_summary" />
+
 </LinearLayout>

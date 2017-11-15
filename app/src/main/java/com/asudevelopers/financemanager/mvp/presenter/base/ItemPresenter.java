@@ -7,8 +7,6 @@ import com.asudevelopers.financemanager.mvp.view.base.BaseView;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public abstract class ItemPresenter<V extends BaseView, E extends BaseEntity>
@@ -44,77 +42,32 @@ public abstract class ItemPresenter<V extends BaseView, E extends BaseEntity>
 
     private void insertItem(final E item) {
         Completable.fromAction(
-                new Action() {
-                    @Override
-                    public void run() {
-                        insertCommand(item);
-                    }
-                })
+                () -> insertCommand(item))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        new Action() {
-                            @Override
-                            public void run() {
-                                onInsertCompleted();
-                            }
-                        },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                onInsertError(throwable);
-                            }
-                        });
+                        this::onInsertCompleted,
+                        this::onInsertError);
     }
 
     private void updateItem(final E item) {
         Completable.fromAction(
-                new Action() {
-                    @Override
-                    public void run() {
-                        updateCommand(item);
-                    }
-                })
+                () -> updateCommand(item))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        new Action() {
-                            @Override
-                            public void run() {
-                                onUpdateCompleted();
-                            }
-                        },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                onUpdateError(throwable);
-                            }
-                        });
+                        this::onUpdateCompleted,
+                        this::onUpdateError);
     }
 
     public void deleteItem() {
         Completable.fromAction(
-                new Action() {
-                    @Override
-                    public void run() {
-                        deleteCommand(item);
-                    }
-                })
+                () -> deleteCommand(item))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        new Action() {
-                            @Override
-                            public void run() {
-                                onDeleteCompleted();
-                            }
-                        },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                onDeleteError(throwable);
-                            }
-                        });
+                        this::onDeleteCompleted,
+                        this::onDeleteError);
     }
 
     protected abstract void insertCommand(E item);

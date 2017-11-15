@@ -8,7 +8,7 @@ public abstract class DatabasePresenter<T extends BaseView> extends MvpPresenter
 
     protected AppDatabase database;
 
-    public DatabasePresenter(AppDatabase database) {
+    DatabasePresenter(AppDatabase database) {
         this.database = database;
     }
 }

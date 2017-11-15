@@ -14,8 +14,8 @@ public class AccountSpinnerAdapter extends CustomAdapter<Account> {
 
     private TextView nameTextView;
 
-    public AccountSpinnerAdapter(@NonNull Context context, @NonNull List<Account> objects) {
-        super(context, R.layout.item_account_spinner, R.layout.item_account_spinner_dropdown, objects);
+    public AccountSpinnerAdapter(@NonNull Context context, @NonNull List<Account> accounts) {
+        super(context, R.layout.item_account_spinner, R.layout.item_account_spinner_dropdown, accounts);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AccountSpinnerAdapter extends CustomAdapter<Account> {
     }
 
     @Override
-    protected void showItem(Account item) {
-        nameTextView.setText(item.getName());
+    protected void showItem(Account account) {
+        nameTextView.setText(account.getName());
     }
 }

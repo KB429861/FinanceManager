@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
@@ -131,12 +129,7 @@ public abstract class TransactionFragment extends BaseFragment
     @Override
     public void showDatePicker(Calendar calendar) {
         DatePickerDialog dialog = new DatePickerDialog(getContext(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        dateTimePresenter.setDate(year, month, day);
-                    }
-                },
+                (view, year, month, day) -> dateTimePresenter.setDate(year, month, day),
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
@@ -146,12 +139,7 @@ public abstract class TransactionFragment extends BaseFragment
     @Override
     public void showTimePicker(Calendar calendar) {
         TimePickerDialog dialog = new TimePickerDialog(getContext(),
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hour, int minute) {
-                        dateTimePresenter.setTime(hour, minute);
-                    }
-                },
+                (view, hour, minute) -> dateTimePresenter.setTime(hour, minute),
                 calendar.get(Calendar.HOUR_OF_DAY),
                 calendar.get(Calendar.MINUTE),
                 true);

@@ -32,7 +32,7 @@ public class OverviewFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_create)
-    public void onTransactionClick(View view) {
+    public void onTransactionClick() {
         Intent intent = new Intent(getActivity(), TransactionActivity.class);
         startActivity(intent);
     }

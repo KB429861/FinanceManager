@@ -6,10 +6,7 @@ import com.asudevelopers.financemanager.mvp.model.entity.Account;
 import com.asudevelopers.financemanager.mvp.presenter.base.ItemsPresenter;
 import com.asudevelopers.financemanager.mvp.view.AccountsView;
 
-import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
@@ -25,18 +22,10 @@ public class AccountsPresenter extends ItemsPresenter<AccountsView, Account> {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        new Consumer<List<Account>>() {
-                            @Override
-                            public void accept(List<Account> accounts) {
-                                setItems(accounts);
-                                getViewState().showAccounts(accounts);
-                            }
+                        accounts -> {
+                            setItems(accounts);
+                            getViewState().showAccounts(accounts);
                         },
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                getViewState().showError(throwable);
-                            }
-                        });
+                        throwable -> getViewState().showError(throwable));
     }
 }

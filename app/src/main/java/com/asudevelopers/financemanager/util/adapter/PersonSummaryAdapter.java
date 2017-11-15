@@ -10,24 +10,24 @@ import com.asudevelopers.financemanager.mvp.model.entity.Person;
 
 import java.util.List;
 
-public class PersonListAdapter extends CustomAdapter<Person> {
+public class PersonSummaryAdapter extends CustomAdapter<Person> {
 
     private TextView nameTextView;
-    private TextView phoneTextView;
+    private TextView amountTextView;
 
-    public PersonListAdapter(@NonNull Context context, @NonNull List<Person> people) {
-        super(context, R.layout.item_person_list, people);
+    public PersonSummaryAdapter(@NonNull Context context, @NonNull List<Person> people) {
+        super(context, R.layout.item_person_summary, people);
     }
 
     @Override
     protected void initView(View layout) {
         nameTextView = layout.findViewById(R.id.tv_name);
-        phoneTextView = layout.findViewById(R.id.tv_phone);
+        amountTextView = layout.findViewById(R.id.tv_amount);
     }
 
     @Override
     protected void showItem(Person person) {
         nameTextView.setText(person.getName());
-        phoneTextView.setText(person.getPhone());
+        amountTextView.setText(String.valueOf(person.getAmount()));
     }
 }
